@@ -1,0 +1,7 @@
+<?php
+
+return [
+	'class' => 'boundstate\mailgun\Mailer',
+    'key' => 'Set Key',
+    'domain' => 'indomailer.net',
+];

@@ -1,0 +1,337 @@
+body {
+	/*background: #efefef;*/
+}
+
+.navbar-inverse {
+    background-color: #a50328 !important;
+    border-color: #a50328 !important;
+    border-radius: 0px !important;
+    height: 68px !important;
+    margin-bottom: 0px !important;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: rgba(255, 255, 255, 0.6) !important;
+    background-color: #08080800 !important;
+    font-size: 16px !important;
+    padding-top: 18px !important;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: rgba(255, 255, 255, 0.6) !important;
+    background-color: #08080800 !important;
+    font-size: 18px !important;
+    padding-top: 18px !important;
+}
+
+img.img-brand-navbar {
+    display: inline;
+    vertical-align: top;
+    height: 50px;
+    margin-top: -12px;
+}
+
+.navbar-brand {
+    float: left;
+    padding: 18px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.navbar-nav {
+    margin-top:3px;
+}
+
+/*.bgimage {
+	width: 100%;
+	height: 600px;
+	background: url('images/background.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size:cover;
+	background-attachment: fixed;
+}*/
+
+.bgimage h5 {
+	color: white;
+	text-shadow: 2px 2px #333;
+}
+
+#about > .section-title-area {
+	margin-bottom: 5%;
+}
+
+.section-title-area {
+	text-align: center;
+}
+
+.section-title-area > .section-sub-title {
+	color: #aaaaaa;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 0%;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.section-title-area > .section-title {
+	font-weight: 800;
+    position: relative;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+
+.section-description {
+    font-size: 1.6rem;
+    margin-top: 4rem;
+    margin-left: 6%;
+    margin-right: 6%;
+}
+
+.section-description > p {
+	line-height: 150%;
+    color: #827c7c;
+    font-size: 120%;
+}
+
+/*#news {
+	background: #f8f9f9;
+}*/
+
+.section-news-area {
+	padding-bottom: 5%;
+}
+
+.section-desc-news {
+    font-size: 1.6rem;
+}
+
+#lorem {
+	margin-bottom: 50%;
+
+}
+
+.section-hero-area {
+	padding: 15% 0% 15% 0%;
+	text-align: center;
+	color: #000000;
+}
+
+.section-hero-area > .section-hero-title {
+	font-size: 270%;
+    font-weight: bold;
+}
+
+.section-hero-area > .section-hero-sub-title {
+	margin: 0 0 10px;
+    line-height: 155%;
+    color: #000000;
+    font-size: 130%;
+    font-style: italic;
+}
+
+.btn-flat {
+    border-radius: 0px;
+}
+
+footer.layout-footer {
+    background: #232323;
+    padding: 25px 0 25px 0;
+    color: #ccc;
+}
+
+footer.page-footer {
+    background: #000000;
+    font-size: 12px;
+    color: #999;
+    padding: 20px 0 20px 0;
+}
+
+div.title-icon-footer {
+    margin-bottom: 4%; 
+    font-size: 17px;
+    color: #fff;
+}
+
+h3.footer-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ccc;
+    margin: 0 0 20px;
+}
+
+.thumbnail-new {
+    max-width: 100%;
+    height: 170px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.thumbnail-new > img {
+    margin: 0 auto;
+}
+
+.thumbnail-new-list {
+    max-width: 100%;
+    height: 100px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.thumbnail-new-list > img {
+    margin: 0 auto;
+}
+
+.thumbnail-new-list-terbaru {
+    max-width: 100%;
+    height: 60px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.thumbnail-new-list-terbaru > img {
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 580px) {
+    .thumbnail-new {
+        max-width: 100%;
+        height: 250px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 3%;
+    }
+
+    .thumbnail-new-list {
+        max-width: 100%;
+        height: 250px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .thumbnail-new-list-terbaru {
+        max-width: 100%;
+        height: 200px;
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+.thumbnail-news-view {
+    margin-bottom: 2%;
+}
+
+.thumbnail-news-view > img {
+    margin: 0 auto;
+}
+
+.desc-new {
+
+}
+
+.card-news {
+    /*padding-left: 5%;*/
+    padding-right: 5%;
+    /*background: red;*/
+}
+
+.desc-new > .sub-title {
+    color: #03c4eb;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: -1%;
+    padding: 0% 0% 2% 0%;
+}
+
+.desc-new > .h-title {
+    font-size: 115%;
+    margin-bottom: 1%;
+    font-weight: bold;
+}
+
+.content {
+    margin-bottom: 3% !important;
+    padding: 0px !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #000 !important;
+    border-bottom: 2px solid;
+    background: #ffffff !important;
+}
+
+a.anchor-black {
+    color: black !important;
+}
+
+a.anchor-black:hover {
+    border-bottom: 1px solid;
+}
+
+a.anchor-info {
+    color: #03c4eb;
+}
+
+a.anchor-info:hover {
+    color: #03c4eb;
+    border-bottom: 1px solid #03c4eb;
+}
+
+.content-berita {
+    text-align: justify;
+}
+
+.title-news {
+    color: #6f6e6e;
+    /*display: inline-block;*/
+    position: relative;
+    margin-bottom: 0%;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.entry-meta{
+    margin-bottom: 2%;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    font-weight: 600;
+    padding-bottom: 25px;
+    color: #888585;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.text-sea {
+    color: #03c4eb;
+}
+
+.date-news {
+    font-size: 13px;
+    color: #9B9B9B;
+}
+
+.link-tautan{
+    background: #f3f3f3;
+    padding: 0 auto;
+    margin-top: -25px;
+    text-align: center;
+}
+
+/* comment */
+
+.fc-center {
+    margin-top: 3% !important;
+}
