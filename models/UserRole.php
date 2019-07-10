@@ -14,6 +14,8 @@ use yii\helpers\ArrayHelper;
 class UserRole extends \yii\db\ActiveRecord
 {
     const ADMIN = 1;
+    const PETUGAS = 2;
+    const PENDAKI = 3;
 
     /**
      * {@inheritdoc}

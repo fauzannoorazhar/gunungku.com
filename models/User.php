@@ -9,21 +9,19 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
- * User model
+ * This is the model class for table "user".
  *
- * @property integer $id
+ * @property int $id
+ * @property int $id_pendaki
+ * @property int $id_user_role
  * @property string $username
+ * @property string $auth_key
  * @property string $password
  * @property string $password_reset_token
  * @property string $email
- * @property string $auth_key
- * @property integer $status
- * @property mixed $userRole
- * @property mixed $satker
- * @property bool $idSatker
- * @property mixed $tahun
- * @property string $authKey
- * @property string $password write-only password
+ * @property int $status
+ * @property int $created_at
+ * @property int $updated_at
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -42,9 +40,34 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username','password','id_user_role'], 'required'],
-            [['id_user_role'], 'integer'],
-            [['username','password'], 'string', 'max' => 255],
+            ['username','unique'],
+            [['id_pendaki', 'id_user_role', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['id_user_role', 'username', 'auth_key', 'password', 'email', 'created_at', 'updated_at'], 'required'],
+            [['username', 'password', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [['auth_key'], 'string', 'max' => 32],
+            [['username'], 'unique'],
+            [['email'], 'unique'],
+            [['password_reset_token'], 'unique'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'ID'),
+            'id_pendaki' => Yii::t('app', 'Id Pendaki'),
+            'id_user_role' => Yii::t('app', 'Id User Role'),
+            'username' => Yii::t('app', 'Username'),
+            'auth_key' => Yii::t('app', 'Auth Key'),
+            'password' => Yii::t('app', 'Password'),
+            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'email' => Yii::t('app', 'Email'),
+            'status' => Yii::t('app', 'Status'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
