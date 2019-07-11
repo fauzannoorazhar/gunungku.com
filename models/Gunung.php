@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 use yii\helpers\StringHelper;
 
 /**
@@ -15,6 +18,11 @@ use yii\helpers\StringHelper;
  * @property int $id_jenis_gunung
  * @property int $status_aktif
  * @property int $status
+ * @property int $created_at
+ * @property int $updated_at
+ * @property int $created_by
+ * @property int $updated_by
+ * @property int $status_hapus
  * @property int $kuota
  * @property string $deskripsi_izin
  * @property string $deskripsi_wajib
@@ -55,6 +63,26 @@ class Gunung extends \yii\db\ActiveRecord
             [['deskripsi', 'deskripsi_izin', 'deskripsi_wajib', 'deskripsi_dilarang', 'deskripsi_sanksi', 'deskripsi_kontak'], 'string'],
             [['ketinggian', 'id_jenis_gunung', 'status_aktif', 'status', 'kuota'], 'integer'],
             [['nama'], 'string', 'max' => 255],
+
+            [['created_at','updated_at','created_by','updated_by'],'integer'],
+            ['status_hapus','default','value' => 0],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => time(),
+            ],
+            [
+                 'class' => BlameableBehavior::className(),
+                 'createdByAttribute' => 'created_by',
+                 'updatedByAttribute' => 'updated_by',
+             ],
         ];
     }
 
@@ -77,7 +105,17 @@ class Gunung extends \yii\db\ActiveRecord
             'deskripsi_dilarang' => Yii::t('app', 'Deskripsi Dilarang'),
             'deskripsi_sanksi' => Yii::t('app', 'Deskripsi Sanksi'),
             'deskripsi_kontak' => Yii::t('app', 'Deskripsi Kontak'),
+            'created_at' => Yii::t('app', 'Dibuat Pada'),
+            'updated_at' => Yii::t('app', 'Dirubah Pada'),
         ];
+    }
+
+    public static function find()
+    {
+        $query = parent::find();
+        $query->andWhere('status_hapus IS NULL OR status_hapus = 0');
+
+        return $query;
     }
 
     public function getKetinggianMdpl()

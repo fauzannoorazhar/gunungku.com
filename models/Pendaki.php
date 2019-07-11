@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "pendaki".
@@ -20,6 +21,9 @@ use Yii;
  * @property int $id_kabupaten
  * @property string $namaJenisKelamin
  * @property string $file_pengenal
+ * @property int $created_at
+ * @property int $updated_at
+ * @property int $status_hapus
  */
 class Pendaki extends \yii\db\ActiveRecord
 {
@@ -50,6 +54,21 @@ class Pendaki extends \yii\db\ActiveRecord
             [['nama', 'email', 'file_pengenal'], 'string', 'max' => 255],
             ['file_pengenal','default','value' => null],
             //['email','email'],
+
+            [['created_at','updated_at'],'integer'],
+            ['status_hapus','default','value' => 0],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => time(),
+            ],
         ];
     }
 
@@ -81,5 +100,13 @@ class Pendaki extends \yii\db\ActiveRecord
         } else {
             return 'Perempuan';
         }
+    }
+
+    public static function find()
+    {
+        $query = parent::find();
+        $query->andWhere('status_hapus IS NULL OR status_hapus = 0');
+
+        return $query;
     }
 }
