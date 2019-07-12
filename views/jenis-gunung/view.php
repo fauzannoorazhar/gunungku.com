@@ -10,7 +10,7 @@ $this->title = "Detail Jenis Gunung";
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Jenis Gunung'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="jenis-gunung-view box box-primary">
+<div class="jenis-gunung-view box box-danger">
 
     <div class="box-header">
         <h3 class="box-title">Detail Jenis Gunung</h3>

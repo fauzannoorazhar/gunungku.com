@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<div class="pendaki-index box box-primary">
+<div class="pendaki-index box box-danger">
 
     <div class="box-header">
         <?= Html::a('<i class="fa fa-plus"></i> Tambah Pendaki', ['create'], ['class' => 'btn btn-success btn-flat']) ?>

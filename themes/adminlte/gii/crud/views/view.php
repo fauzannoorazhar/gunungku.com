@@ -21,7 +21,7 @@ $this->title = "Detail <?= Inflector::camel2words(StringHelper::basename($genera
 $this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-view box box-primary">
+<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-view box box-danger">
 
     <div class="box-header">
         <h3 class="box-title">Detail <?= Inflector::camel2words(StringHelper::basename($generator->modelClass)); ?></h3>

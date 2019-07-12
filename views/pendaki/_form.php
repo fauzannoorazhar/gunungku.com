@@ -21,7 +21,7 @@ use yii\helpers\Html;
     ]
 ]); ?>
 
-<div class="pendaki-form box box-primary">
+<div class="pendaki-form box box-danger">
 
     <div class="box-header">
         <h3 class="box-title">Form Pendaki</h3>

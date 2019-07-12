@@ -35,8 +35,8 @@ class M190710144152Table_gunung_jalur extends Migration
             'id' => $this->primaryKey(),
             'id_gunung' => $this->integer()->notNull(),
             'nama' => $this->string(255)->notNull(),
-            'jarak_puncak' => $this->decimal(3.1),
-            'jam_perjalanan' => $this->decimal(3.1),
+            'jarak_puncak' => $this->decimal(3,1),
+            'jam_perjalanan' => $this->decimal(3,1),
         ]);
     }
 

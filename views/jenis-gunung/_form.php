@@ -22,7 +22,7 @@ use yii\bootstrap\ActiveForm;
     ]
 ]); ?>
 
-<div class="jenis-gunung-form box box-primary">
+<div class="jenis-gunung-form box box-danger">
 
     <div class="box-header">
         <h3 class="box-title">Form Jenis Gunung</h3>

@@ -32,6 +32,8 @@ use yii\helpers\StringHelper;
  * @property string $statusGunungAktif
  * @property string $statusGunung
  * @property string $ketinggianMdpl
+ * @property GunungJalur $manyGunungJalur
+ * @property integer $countGunungJalur
  * @property string $deskripsi_kontak
  */
 class Gunung extends \yii\db\ActiveRecord
@@ -118,14 +120,24 @@ class Gunung extends \yii\db\ActiveRecord
         return $query;
     }
 
-    public function getKetinggianMdpl()
-    {
-        return $this->ketinggian.' mdpl';
-    }
-
     public function getJenisGunung()
     {
         return $this->hasOne(JenisGunung::class,['id' => 'id_jenis_gunung']);
+    }
+
+    public function getManyGunungJalur()
+    {
+        return $this->hasMany(GunungJalur::class,['id_gunung' => 'id']);
+    }
+
+    public function getCountGunungJalur()
+    {
+        return count($this->manyGunungJalur);
+    }
+
+    public function getKetinggianMdpl()
+    {
+        return $this->ketinggian.' mdpl';
     }
 
     public function getStatusGunungAktif()

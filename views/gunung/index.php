@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<div class="gunung-index box box-primary">
+<div class="gunung-index box box-danger">
 
     <div class="box-header">
         <?= Html::a('<i class="fa fa-plus"></i> Tambah Gunung', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
@@ -79,10 +79,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'text-align:center;'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
-            [
+            /*[
                 'attribute' => 'kuota',
                 'format' => 'raw',
                 'headerOptions' => ['style' => 'text-align:center; width: 100px'],
+                'contentOptions' => ['style' => 'text-align:center;'],
+            ],*/
+            [
+                'label' => "Jumlah <br> Jalur",
+                'format' => 'raw',
+                'encodeLabel' => false,
+                'value' => function(\app\models\Gunung $data) {
+                    return $data->countGunungJalur;
+                },
+                'headerOptions' => ['style' => 'text-align:center; width: 80px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
 

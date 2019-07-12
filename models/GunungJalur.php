@@ -70,8 +70,8 @@ class GunungJalur extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'id_gunung' => Yii::t('app', 'Id Gunung'),
-            'nama' => Yii::t('app', 'Nama'),
+            'id_gunung' => Yii::t('app', 'Gunung'),
+            'nama' => Yii::t('app', 'Nama Jalur'),
             'jarak_puncak' => Yii::t('app', 'Jarak Puncak'),
             'jam_perjalanan' => Yii::t('app', 'Jam Perjalanan'),
         ];

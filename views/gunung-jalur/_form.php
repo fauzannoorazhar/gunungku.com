@@ -8,8 +8,8 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<?php $form = ActiveForm::begin([
-    'layout'=>'horizontal',
+<?php $form = \kartik\form\ActiveForm::begin([
+    'type'=>'horizontal',
     'enableAjaxValidation'=>false,
     'enableClientValidation'=>false,
     'fieldConfig' => [
@@ -22,7 +22,7 @@ use yii\bootstrap\ActiveForm;
     ]
 ]); ?>
 
-<div class="gunung-jalur-form box box-primary">
+<div class="gunung-jalur-form box box-danger">
 
     <div class="box-header">
         <h3 class="box-title">Form Gunung Jalur</h3>
@@ -31,13 +31,37 @@ use yii\bootstrap\ActiveForm;
 
         <?= $form->errorSummary($model); ?>
 
-        <?= $form->field($model, 'id_gunung')->textInput() ?>
+        <?= $form->field($model, 'id_gunung')->widget(\kartik\select2\Select2::className(),[
+            'data' => \app\models\Gunung::getList(),
+            'options' => [
+                'placeholder' => '- Pilih Gunung -',
+            ],
+            'pluginOptions' => [
+                'allowClear' => true,
+            ]
+        ]) ?>
 
         <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'jarak_puncak')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'jarak_puncak',[
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-3',
+                'error' => '',
+                'hint' => '',
+            ],
+            'addon' => ['append' => ['content'=>'Km']],
+        ])->textInput() ?>
 
-        <?= $form->field($model, 'jam_perjalanan')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'jam_perjalanan',[
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-3',
+                'error' => '',
+                'hint' => '',
+            ],
+            'addon' => ['append' => ['content'=>'Jam']],
+        ])->textInput() ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 
@@ -50,4 +74,4 @@ use yii\bootstrap\ActiveForm;
 
 </div>
 
-<?php ActiveForm::end(); ?>
+<?php \kartik\form\ActiveForm::end(); ?>

@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= '    <?php ' . ($generator->indexWidgetType === 'grid' ? '// ' : '') ?>echo $this->render('_search', ['model' => $searchModel]); ?>
 <?php endif; ?>
 
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-index box box-primary">
+<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-index box box-danger">
 
     <div class="box-header">
         <?= '<?= ' ?>Html::a('<i class="fa fa-plus"></i> Tambah <?= Inflector::camel2words(StringHelper::basename($generator->modelClass)) ?>', ['create'], ['class' => 'btn btn-success btn-flat']) ?>

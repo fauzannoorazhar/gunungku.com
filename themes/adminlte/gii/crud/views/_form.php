@@ -38,7 +38,7 @@ use yii\bootstrap\ActiveForm;
     ]
 ]); ?>
 
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form box box-primary">
+<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-form box box-danger">
 
     <div class="box-header">
         <h3 class="box-title">Form <?= Inflector::camel2words(StringHelper::basename($generator->modelClass)); ?></h3>
