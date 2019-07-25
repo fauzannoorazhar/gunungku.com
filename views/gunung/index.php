@@ -95,6 +95,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'text-align:center; width: 80px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
+            [
+                'label' => "",
+                'format' => 'raw',
+                'encodeLabel' => false,
+                'value' => function(\app\models\Gunung $data) {
+                    return Html::a('<i class="fa fa-calendar-check-o"></i>',['gunung/view-kuota','id' => $data->id],['data-toggle' => 'tooltip','title' => 'Lihat Kuota Hari']);
+                },
+                'headerOptions' => ['style' => 'text-align:center; width: 35px'],
+                'contentOptions' => ['style' => 'text-align:center;'],
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',

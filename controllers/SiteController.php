@@ -210,13 +210,19 @@ class SiteController extends Controller
 
     public function actionDev()
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "http://localhost/seuppd/web/index.php?r=api/instansi");
-        $result = curl_exec($ch);
-        curl_close($ch);
+        $datetime = new \DateTime();
+        $datetime->modify('+5 day');
+        $tanggalAwal = $datetime->format('Y-m-d');
+        $datetime->modify('+1 month');
+        $tanggalAkhir = $datetime->format('Y-m-d');
 
-        $obj = json_decode($result);
+        $array;
 
-        var_dump($obj);
+        while (strtotime($tanggalAwal) <= strtotime($tanggalAkhir)) {
+            $array[] = $tanggalAwal;
+            $tanggalAwal = date ("Y-m-d", strtotime("+1 day", strtotime($tanggalAwal)));
+        }
+
+        return $array;
     }
 }

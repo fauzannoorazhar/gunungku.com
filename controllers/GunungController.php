@@ -33,7 +33,7 @@ class GunungController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index','view','create','update','delete'],
+                        'actions' => ['index','view','create','update','delete','view-kuota'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -131,6 +131,15 @@ class GunungController extends Controller
             'referrer'=>$referrer
         ]);
 
+    }
+
+    public function actionViewKuota($id)
+    {
+        $model = $this->findModel($id);
+
+        return $this->render('view-kuota', [
+            'model' => $model,
+        ]);
     }
 
     /**

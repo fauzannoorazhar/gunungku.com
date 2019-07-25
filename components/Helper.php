@@ -560,4 +560,50 @@ class Helper extends Component
             return 'Tidak Ada Selisih';
         }
     }
+
+    public static function getHariBulanList()
+    {
+        $datetime = new \DateTime();
+        $datetime->modify('+5 day');
+        $tanggalAwal = $datetime->format('Y-m-d');
+        $datetime->modify('+1 month');
+        $tanggalAkhir = $datetime->format('Y-m-d');
+
+        $array;
+
+        while (strtotime($tanggalAwal) <= strtotime($tanggalAkhir)) {
+            $array[] = $tanggalAwal;
+            $tanggalAwal = date ("Y-m-d", strtotime("+1 day", strtotime($tanggalAwal)));
+        }
+
+        return $array;
+    }
+
+    public static function getHariConvert($tanggal)
+    {
+        $hari = date('l', strtotime($tanggal));
+
+        if ($hari == 'Monday') {
+            return 'Senin';
+        } elseif ($hari == 'Tuesday') {
+            return 'Selasa';
+        } elseif ($hari == 'Wednesday') {
+            return 'Rabu';
+        } elseif ($hari == 'Thursday') {
+            return 'Kamis';
+        } elseif ($hari == 'Friday') {
+            return 'Jumat';
+        } elseif ($hari == 'Saturday') {
+            return 'Sabtu';
+        } elseif ($hari == 'Sunday') {
+            return 'Minggu';
+        } else {
+            return null;
+        }
+    }
+
+    public static function getNamaHariTanggal($tanggal)
+    {
+        return static::getHariConvert($tanggal).', '.static::getTanggal($tanggal);
+    }
 }
