@@ -80,9 +80,10 @@ class GunungJalurPosController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id_gunung_jalur=null)
     {
         $model = new GunungJalurPos();
+        $model->id_gunung_jalur = $id_gunung_jalur;
 
         $referrer = Yii::$app->request->referrer;
 

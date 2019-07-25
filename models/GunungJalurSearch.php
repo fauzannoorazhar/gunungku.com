@@ -53,10 +53,10 @@ class GunungJalurSearch extends GunungJalur
         $query->andFilterWhere([
             'id' => $this->id,
             'id_gunung' => $this->id_gunung,
-            'jarak_puncak' => $this->jarak_puncak,
-            'jam_perjalanan' => $this->jam_perjalanan,
         ]);
 
+        $query->andFilterWhere(['like', 'jarak_puncak', $this->jarak_puncak]);
+        $query->andFilterWhere(['like', 'jam_perjalanan', $this->jam_perjalanan]);
         $query->andFilterWhere(['like', 'nama', $this->nama]);
 
         return $query;

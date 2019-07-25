@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
             [
-                'attribute' => 'id_gunung',
+                'attribute' => 'id_gunung_jalur',
                 'format' => 'raw',
                 'headerOptions' => ['style' => 'text-align:center;'],
                 'contentOptions' => ['style' => 'text-align:center;'],

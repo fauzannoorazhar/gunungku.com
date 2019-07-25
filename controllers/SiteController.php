@@ -210,16 +210,13 @@ class SiteController extends Controller
 
     public function actionDev()
     {
-        $query = new Query;
-        $query->select(['concat(no_rm_pas, " - ",nm_pas) as text', 'id_pas as id'])
-            ->from('tb_pasien')
-            ->andWhere(['like', 'nm_pas', 'aas'])
-            ->andWhere(['like', 'no_rm_pas', 005])
-            ->limit(20);
-        $command = $query->createCommand();
-        $data = $command->queryAll();
-        $out['results'] = array_values($data);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "http://localhost/seuppd/web/index.php?r=api/instansi");
+        $result = curl_exec($ch);
+        curl_close($ch);
 
-        print_r($data);
+        $obj = json_decode($result);
+
+        var_dump($obj);
     }
 }

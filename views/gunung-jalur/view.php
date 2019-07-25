@@ -23,14 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
         'attributes' => [
             [
-                'attribute' => 'id',
-                'format' => 'raw',
-                'value' => $model->id,
-            ],
-            [
                 'attribute' => 'id_gunung',
                 'format' => 'raw',
-                'value' => $model->id_gunung,
+                'value' => $model->gunung->nama,
             ],
             [
                 'attribute' => 'nama',
@@ -58,3 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 </div>
+
+
+<?= $this->render('daftar-gunung-jalur-pos',['gunungJalur' => $model]) ?>

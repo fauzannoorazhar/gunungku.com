@@ -31,7 +31,7 @@ use yii\bootstrap\ActiveForm;
 
         <?= $form->errorSummary($model); ?>
 
-        <?= $form->field($model, 'id_gunung')->textInput() ?>
+        <?= $form->field($model, 'id_gunung_jalur')->textInput() ?>
 
         <?= $form->field($model, 'kuota')->textInput() ?>
 

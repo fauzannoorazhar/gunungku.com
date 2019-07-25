@@ -10,7 +10,7 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "gunung_kuota".
  *
  * @property int $id
- * @property int $id_gunung
+ * @property int $id_gunung_jalur
  * @property int $kuota
  * @property string $tanggal
  * @property int $created_at
@@ -35,8 +35,8 @@ class GunungKuota extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_gunung', 'kuota'], 'required'],
-            [['id_gunung', 'kuota'], 'integer'],
+            [['id_gunung_jalur', 'kuota'], 'required'],
+            [['id_gunung_jalur', 'kuota'], 'integer'],
             [['tanggal'], 'safe'],
 
             [['created_at','updated_at','created_by','updated_by'],'integer'],
@@ -68,7 +68,7 @@ class GunungKuota extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'id_gunung' => Yii::t('app', 'Id Gunung'),
+            'id_gunung_jalur' => Yii::t('app', 'Id Gunung Jalur'),
             'kuota' => Yii::t('app', 'Kuota'),
             'tanggal' => Yii::t('app', 'Tanggal'),
         ];

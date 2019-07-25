@@ -23,14 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
         'attributes' => [
             [
-                'attribute' => 'id',
-                'format' => 'raw',
-                'value' => $model->id,
-            ],
-            [
                 'attribute' => 'id_gunung_jalur',
                 'format' => 'raw',
-                'value' => $model->id_gunung_jalur,
+                'value' => $model->gunungJalur->nama,
             ],
             [
                 'attribute' => 'nama',
@@ -40,12 +35,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status_kemah',
                 'format' => 'raw',
-                'value' => $model->status_kemah,
+                'value' => $model->iconStatusKemah,
             ],
             [
                 'attribute' => 'sumber_air',
                 'format' => 'raw',
-                'value' => $model->sumber_air,
+                'value' => $model->iconSumberAir,
             ],
         ],
     ]) ?>

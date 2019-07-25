@@ -18,10 +18,15 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  * @property int $created_by
  * @property int $updated_by
+ * @property Gunung $gunung
+ * @property GunungJalurPos $manyGunungJalurPos
+ * @property int $countGunungJalurPos
  * @property int $status_hapus
  */
 class GunungJalur extends \yii\db\ActiveRecord
 {
+    use ListableTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -83,5 +88,21 @@ class GunungJalur extends \yii\db\ActiveRecord
         $query->andWhere('status_hapus IS NULL OR status_hapus = 0');
 
         return $query;
+    }
+
+
+    public function getGunung()
+    {
+        return $this->hasOne(Gunung::class,['id' => 'id_gunung']);
+    }
+
+    public function getManyGunungJalurPos()
+    {
+        return $this->hasMany(GunungJalurPos::class,['id_gunung_jalur' => 'id'])->orderBy(['urutan' => SORT_ASC]);
+    }
+
+    public function getCountGunungJalurPos()
+    {
+        return count($this->manyGunungJalurPos);
     }
 }

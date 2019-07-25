@@ -31,16 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'text-align:center'],
                 'contentOptions' => ['style' => 'text-align:center']
             ],
-
-            [
-                'attribute' => 'id',
-                'format' => 'raw',
-                'headerOptions' => ['style' => 'text-align:center;'],
-                'contentOptions' => ['style' => 'text-align:center;'],
-            ],
             [
                 'attribute' => 'id_gunung',
                 'format' => 'raw',
+                'filter' => \app\models\Gunung::getList(),
+                'value' => function(\app\models\GunungJalur $data) {
+                    return $data->gunung->nama;
+                },
                 'headerOptions' => ['style' => 'text-align:center;'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
@@ -60,6 +57,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'jam_perjalanan',
                 'format' => 'raw',
                 'headerOptions' => ['style' => 'text-align:center;'],
+                'contentOptions' => ['style' => 'text-align:center;'],
+            ],
+            [
+                'label' => "Jumlah <br> Pos",
+                'format' => 'raw',
+                'encodeLabel' => false,
+                'value' => function(\app\models\GunungJalur $data) {
+                    return $data->countGunungJalurPos;
+                },
+                'headerOptions' => ['style' => 'text-align:center; width: 80px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
 

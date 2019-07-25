@@ -31,16 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'text-align:center'],
                 'contentOptions' => ['style' => 'text-align:center']
             ],
-
-            [
-                'attribute' => 'id',
-                'format' => 'raw',
-                'headerOptions' => ['style' => 'text-align:center;'],
-                'contentOptions' => ['style' => 'text-align:center;'],
-            ],
             [
                 'attribute' => 'id_gunung_jalur',
                 'format' => 'raw',
+                'filter' => \app\models\GunungJalur::getList(),
+                'value' => function(\app\models\GunungJalurPos $data) {
+                    return $data->gunungJalur->nama;
+                },
                 'headerOptions' => ['style' => 'text-align:center;'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
@@ -53,13 +50,19 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status_kemah',
                 'format' => 'raw',
-                'headerOptions' => ['style' => 'text-align:center;'],
+                'value' => function(\app\models\GunungJalurPos $data) {
+                    return $data->iconStatusKemah;
+                },
+                'headerOptions' => ['style' => 'text-align:center; width: 100px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
             [
                 'attribute' => 'sumber_air',
                 'format' => 'raw',
-                'headerOptions' => ['style' => 'text-align:center;'],
+                'value' => function(\app\models\GunungJalurPos $data) {
+                    return $data->iconSumberAir;
+                },
+                'headerOptions' => ['style' => 'text-align:center; width: 100px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
 

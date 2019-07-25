@@ -114,4 +114,4 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-<?= $this->render('daftar-gunung-jalur',['model' => $model]) ?>
+<?= $this->render('daftar-gunung-jalur',['gunung' => $model]) ?>

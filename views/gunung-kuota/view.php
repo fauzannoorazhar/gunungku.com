@@ -28,9 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->id,
             ],
             [
-                'attribute' => 'id_gunung',
+                'attribute' => 'id_gunung_jalur',
                 'format' => 'raw',
-                'value' => $model->id_gunung,
+                'value' => $model->id_gunung_jalur,
             ],
             [
                 'attribute' => 'kuota',

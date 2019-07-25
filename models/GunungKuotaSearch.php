@@ -18,7 +18,7 @@ class GunungKuotaSearch extends GunungKuota
     public function rules()
     {
         return [
-            [['id', 'id_gunung', 'kuota'], 'integer'],
+            [['id', 'id_gunung_jalur', 'kuota'], 'integer'],
             [['tanggal'], 'safe'],
         ];
     }
@@ -51,7 +51,7 @@ class GunungKuotaSearch extends GunungKuota
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_gunung' => $this->id_gunung,
+            'id_gunung_jalur' => $this->id_gunung_jalur,
             'kuota' => $this->kuota,
             'tanggal' => $this->tanggal,
         ]);

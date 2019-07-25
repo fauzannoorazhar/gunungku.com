@@ -1,6 +1,6 @@
 <?php
 
-/* @var $model \app\models\Gunung */
+/* @var $gunung \app\models\Gunung */
 
 ?>
 
@@ -11,7 +11,7 @@
         </h3>
     </div>
     <div class="box-header">
-        <?= \yii\helpers\Html::a('<i class="fa fa-plus"></i> Tambah Jalur',['gunung-jalur/create','id_gunung' => $model->id],['class' => 'btn btn-success btn-flat']) ?>
+        <?= \yii\helpers\Html::a('<i class="fa fa-plus"></i> Tambah Jalur',['gunung-jalur/create','id_gunung' => $gunung->id],['class' => 'btn btn-success btn-flat']) ?>
     </div>
     <div class="box-body">
         <div class="table-responsive">
@@ -27,14 +27,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no = 1; foreach ($model->manyGunungJalur as $gunungJalur) { ?>
+                    <?php $no = 1; foreach ($gunung->manyGunungJalur as $gunungJalur) { ?>
                     <?php /* @var $gunungJalur \app\models\GunungJalur */ ?>
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
                             <td><?= $gunungJalur->nama ?></td>
                             <td class="text-center"><?= $gunungJalur->jarak_puncak ?></td>
                             <td class="text-center"><?= $gunungJalur->jam_perjalanan ?></td>
-                            <td class="text-center">0</td>
+                            <td class="text-center"><?= $gunungJalur->countGunungJalurPos ?></td>
                             <td class="text-center">
                                 <?= \yii\helpers\Html::a('<i class="fa fa-eye"></i>',['gunung-jalur/view','id' => $gunungJalur->id]) ?>
                                 <?= \yii\helpers\Html::a('<i class="fa fa-pencil"></i>',['gunung-jalur/update','id' => $gunungJalur->id]) ?>
