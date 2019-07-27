@@ -2,5 +2,6 @@
 use yii\helpers\Html;
 use app\components\Helper;
 
-$this->title = "";
+$this->title = "LERAMIZ - Landing Page Template";
 ?>
+

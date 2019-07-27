@@ -2,6 +2,8 @@
 
 $params = require(__DIR__ . '/params.php');
 
+Yii::setAlias('@main-frontend','/frontend/layouts/main.php');
+
 $config = [
     'id' => 'BASIC',
     'name' => 'Basic Yii2',
@@ -9,24 +11,24 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'id_ID',
     'timeZone' => 'Asia/Jakarta',
-    /*'container' => [
+    'container' => [
         'definitions' => [
-            DataColumn::class => [
+            \yii\grid\DataColumn::class => [
                 'headerOptions' => ['style' => 'text-align:center'],
                 'contentOptions' => ['style' => 'text-align:center'],
                 'format' => 'raw',
             ],
-            SerialColumn::class => [
+            \yii\grid\SerialColumn::class => [
                 'headerOptions' => ['style' => 'text-align:center'],
                 'contentOptions' => ['style' => 'text-align:center'],
             ],
-            Select2::class => [
+            \kartik\select2\Select2::class => [
                 'pluginOptions' => [
                     'allowClear' => true,
                 ],
             ],
         ],
-    ],*/
+    ],
     'components' => [
         'view' => [
             'theme' => [
