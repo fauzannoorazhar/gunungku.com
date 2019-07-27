@@ -51,7 +51,7 @@ use yii\bootstrap\ActiveForm;
                 'hint' => '',
             ],
             'addon' => ['append' => ['content'=>'Km']],
-        ])->textInput() ?>
+        ])->textInput(['placeholder' => 'Contoh : 8.0, 10.5']) ?>
 
         <?= $form->field($model, 'jam_perjalanan',[
             'horizontalCssClasses' => [
@@ -61,7 +61,7 @@ use yii\bootstrap\ActiveForm;
                 'hint' => '',
             ],
             'addon' => ['append' => ['content'=>'Jam']],
-        ])->textInput() ?>
+        ])->textInput(['placeholder' => 'Contoh : 8.0, 10.5']) ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 

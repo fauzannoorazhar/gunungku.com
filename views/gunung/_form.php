@@ -32,7 +32,17 @@ use yii\helpers\Html;
 
         <?= $form->field($model, 'nama')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'deskripsi')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'deskripsi',[
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-4',
+                'error' => '',
+                'hint' => '',
+            ],
+        ])->widget(\dosamigos\ckeditor\CKEditor::className(), [
+            'options' => ['rows' => 6],
+            'preset' => 'basic'
+        ]) ?>
 
         <?= $form->field($model, 'id_jenis_gunung')->widget(\kartik\select2\Select2::className(),[
             'data' => \app\models\JenisGunung::getList(),
@@ -52,7 +62,7 @@ use yii\helpers\Html;
                 'hint' => '',
             ],
             'addon' => ['append' => ['content'=>'MDPL']],
-        ])->textInput(['type' => 'number','min' => 1]) ?>
+        ])->textInput(['type' => 'number','min' => 1,'placeholder' => 'Contoh : 2250, 1500']) ?>
 
         <?= $form->field($model, 'status_aktif',[
             'horizontalCssClasses' => [
@@ -80,17 +90,67 @@ use yii\helpers\Html;
                 'hint' => '',
             ],
             'addon' => ['append' => ['content'=>'Orang']],
-        ])->textInput(['type' => 'number','min' => 1]) ?>
+        ])->textInput(['type' => 'number','min' => 1,'placeholder' => 'Contoh : 100, 250']) ?>
 
-        <?= $form->field($model, 'deskripsi_izin')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'deskripsi_izin',[
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-8',
+                'error' => '',
+                'hint' => '',
+            ],
+        ])->widget(\dosamigos\ckeditor\CKEditor::className(), [
+            'options' => ['rows' => 6],
+            'preset' => 'advanced'
+        ]) ?>
 
-        <?= $form->field($model, 'deskripsi_wajib')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'deskripsi_wajib',[
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-8',
+                'error' => '',
+                'hint' => '',
+            ],
+        ])->widget(\dosamigos\ckeditor\CKEditor::className(), [
+            'options' => ['rows' => 6],
+            'preset' => 'advanced'
+        ]) ?>
 
-        <?= $form->field($model, 'deskripsi_dilarang')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'deskripsi_dilarang',[
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-8',
+                'error' => '',
+                'hint' => '',
+            ],
+        ])->widget(\dosamigos\ckeditor\CKEditor::className(), [
+            'options' => ['rows' => 6],
+            'preset' => 'advanced'
+        ]) ?>
 
-        <?= $form->field($model, 'deskripsi_sanksi')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'deskripsi_sanksi',[
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-8',
+                'error' => '',
+                'hint' => '',
+            ],
+        ])->widget(\dosamigos\ckeditor\CKEditor::className(), [
+            'options' => ['rows' => 6],
+            'preset' => 'advanced'
+        ]) ?>
 
-        <?= $form->field($model, 'deskripsi_kontak')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'deskripsi_kontak',[
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-8',
+                'error' => '',
+                'hint' => '',
+            ],
+        ])->widget(\dosamigos\ckeditor\CKEditor::className(), [
+            'options' => ['rows' => 6],
+            'preset' => 'advanced'
+        ]) ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 
