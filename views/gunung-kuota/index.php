@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\GunungKuotaSearch */
@@ -28,34 +28,52 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yii\grid\SerialColumn',
                 'header' => 'No',
-                'headerOptions' => ['style' => 'text-align:center'],
+                'headerOptions' => ['style' => 'text-align:center; width: 50px'],
                 'contentOptions' => ['style' => 'text-align:center']
             ],
-
             [
-                'attribute' => 'id',
+                'label' => 'gunung',
                 'format' => 'raw',
+                'value' => function(\app\models\GunungKuota $data) {
+                    return $data->gunungJalur->gunung->nama."<br>".$data->gunungJalur->gunung->ketinggianMdpl;
+                },
                 'headerOptions' => ['style' => 'text-align:center;'],
-                'contentOptions' => ['style' => 'text-align:center;'],
+                'contentOptions' => ['style' => 'text-align:left;'],
             ],
             [
                 'attribute' => 'id_gunung_jalur',
                 'format' => 'raw',
-                'headerOptions' => ['style' => 'text-align:center;'],
-                'contentOptions' => ['style' => 'text-align:center;'],
-            ],
-            [
-                'attribute' => 'kuota',
-                'format' => 'raw',
+                'filter' => \app\models\GunungJalur::getList(),
+                'value' => function(\app\models\GunungKuota $data) {
+                    return $data->gunungJalur->nama;
+                },
                 'headerOptions' => ['style' => 'text-align:center;'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
             [
                 'attribute' => 'tanggal',
                 'format' => 'raw',
-                'headerOptions' => ['style' => 'text-align:center;'],
+                'filterType' => GridView::FILTER_DATE,
+                'filterWidgetOptions' => [
+                    'pluginOptions' => [
+                        'format' => 'yyyy-mm-dd',
+                        'autoclose' => true,
+                        'todayHighlight' => true,
+                    ]
+                ],
+                'value' => function(\app\models\GunungKuota $data) {
+                    return \app\components\Helper::getTanggalSingkat($data->tanggal);
+                },
+                'headerOptions' => ['style' => 'text-align:center; width: 250px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
+            [
+                'attribute' => 'kuota',
+                'format' => 'raw',
+                'headerOptions' => ['style' => 'text-align:center; width: 80px'],
+                'contentOptions' => ['style' => 'text-align:center;'],
+            ],
+
 
             [
                 'class' => 'yii\grid\ActionColumn',

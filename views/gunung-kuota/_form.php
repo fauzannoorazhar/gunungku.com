@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use kartik\form\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\GunungKuota */
@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 ?>
 
 <?php $form = ActiveForm::begin([
-    'layout'=>'horizontal',
+    'type'=>'horizontal',
     'enableAjaxValidation'=>false,
     'enableClientValidation'=>false,
     'fieldConfig' => [
@@ -31,11 +31,46 @@ use yii\bootstrap\ActiveForm;
 
         <?= $form->errorSummary($model); ?>
 
-        <?= $form->field($model, 'id_gunung_jalur')->textInput() ?>
+        <?= $form->field($model, 'id_gunung')->widget(\kartik\select2\Select2::class, [
+            'data' => \app\models\Gunung::getList(),
+            'options' => [
+                'id' => 'id-gunung',
+                'placeholder' => '- Pilih Gunung -',
+            ],
+            'pluginOptions' => [
+                //'allowClear' => true
+            ],
+        ])->label('Gunung'); ?>
 
-        <?= $form->field($model, 'kuota')->textInput() ?>
+        <?= $form->field($model, 'id_gunung_jalur')->widget(\kartik\depdrop\DepDrop::class, [
+            'type' => \kartik\depdrop\DepDrop::TYPE_SELECT2,
+            'data' => \app\models\GunungJalur::getList(),
+            'pluginOptions' => [
+                'depends' => ['id-gunung'],
+                'placeholder' => '- Pilih Jalur -',
+                'url' => \yii\helpers\Url::to(['gunung-jalur/get-list','selected' => $model->id_gunung_jalur]),
+                'initialize' => true
+            ]
+        ]); ?>
 
-        <?= $form->field($model, 'tanggal')->textInput() ?>
+        <?= $form->field($model, 'kuota',[
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-2',
+                'wrapper' => 'col-sm-3',
+                'error' => '',
+                'hint' => '',
+            ],
+            'addon' => ['append' => ['content'=>'Orang']],
+        ])->textInput(['type' => 'number','min' => 1]) ?>
+
+        <?= $form->field($model, 'tanggal')->widget(\kartik\date\DatePicker::className(), [
+            'removeButton' => false,
+            'options' => ['placeholder' => 'Tanggal'],
+            'pluginOptions' => [
+                'autoclose'=>true,
+                'format' => 'yyyy-mm-dd'
+            ]
+        ]) ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 

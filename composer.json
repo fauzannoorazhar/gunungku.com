@@ -36,7 +36,8 @@
         "yii2tech/ar-position": "^1.0",
         "yii2mod/yii2-array-query": "*",
         "2amigos/yii2-ckeditor-widget" : "~2.1",
-        "boundstate/yii2-mailgun": "^0.0.3"
+        "boundstate/yii2-mailgun": "^0.0.3",
+        "kartik-v/yii2-widget-depdrop": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\GunungJalur;
 use app\models\GunungJalurSearch;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -33,7 +34,7 @@ class GunungJalurController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index','view','create','update','delete'],
+                        'actions' => ['index','view','create','update','delete','get-list'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -167,6 +168,34 @@ class GunungJalurController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionGetList($selected=null)
+    {
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $id_gunung = $parents[0];
+
+                $out = self::getListGunung($id_gunung);
+
+                echo Json::encode(['output' => $out, 'selected' => $selected]);
+                return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
+    }
+
+    public static function getListGunung($id_gunung)
+    {
+        foreach (GunungJalur::find()->andWhere(['id_gunung' => $id_gunung])->all() as $gunung) {
+            $list[] = [
+                'id' => $gunung->id, 'name' => $gunung->nama
+            ];
+        }
+
+        return $list;
     }
 
 }

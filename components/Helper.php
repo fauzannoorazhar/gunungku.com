@@ -561,13 +561,20 @@ class Helper extends Component
         }
     }
 
-    public static function getHariBulanList()
+    public static function getHariBulanList($bulan=null)
     {
-        $datetime = new \DateTime();
-        $datetime->modify('+5 day');
-        $tanggalAwal = $datetime->format('Y-m-d');
-        $datetime->modify('+1 month');
-        $tanggalAkhir = $datetime->format('Y-m-d');
+        if ($bulan === null) {
+            $firstDate = date("Y-m-01");
+            $lastDate = date("Y-m-t", strtotime(date("Y-m-d")));
+        } else {
+            $firstDate = date("Y-$bulan-01");
+            $lastDate = date("Y-m-t", strtotime(date("Y-$bulan-d")));
+        }
+
+        $firstDay = new \DateTime($firstDate);
+        $tanggalAwal = $firstDay->format("Y-m-d");
+        $lastDay = new \DateTime($lastDate);
+        $tanggalAkhir = $lastDay->format("Y-m-d");
 
         $array;
 

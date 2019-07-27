@@ -23,14 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'template' => '<tr><th width="180px" style="text-align:right">{label}</th><td>{value}</td></tr>',
         'attributes' => [
             [
-                'attribute' => 'id',
+                'label' => 'Gunung',
                 'format' => 'raw',
-                'value' => $model->id,
+                'value' => $model->gunungJalur->gunung->nama,
             ],
             [
                 'attribute' => 'id_gunung_jalur',
                 'format' => 'raw',
-                'value' => $model->id_gunung_jalur,
+                'value' => $model->gunungJalur->nama,
             ],
             [
                 'attribute' => 'kuota',
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'tanggal',
                 'format' => 'raw',
-                'value' => $model->tanggal,
+                'value' => \app\components\Helper::getTanggal($model->tanggal),
             ],
         ],
     ]) ?>

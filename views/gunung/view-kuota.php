@@ -101,8 +101,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php foreach($model->manyGunungJalur as $gunungJalur) { ?>
                                 <?php /* @var $gunungJalur \app\models\GunungJalur */ ?>
                                 <td style="text-align: center">
-                                    <?= Html::a('<i class="fa fa-plus"></i>',['gunung-kuota/create','id_gunung_jalur' => $gunungJalur->id],['data-toggle' => 'tooltip','title' => 'Input Kuota']) ?>
-                                    <?= $model->kuota ?>
+                                    <?= Html::a('<i class="fa fa-plus"></i>',['gunung-kuota/create','id_gunung_jalur' => $gunungJalur->id,'tanggal' => $hari],['data-toggle' => 'tooltip','title' => 'Input Kuota']) ?>
+                                    <?= "" ?>
                                 </td>
                             <?php } ?>
                         </tr>

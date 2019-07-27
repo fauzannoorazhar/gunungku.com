@@ -80,7 +80,7 @@ class GunungJalurPos extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'id_gunung_jalur' => Yii::t('app', 'Gunung Jalur'),
+            'id_gunung_jalur' => Yii::t('app', 'Jalur'),
             'nama' => Yii::t('app', 'Nama'),
             'status_kemah' => Yii::t('app', 'Status Kemah'),
             'sumber_air' => Yii::t('app', 'Sumber Air'),

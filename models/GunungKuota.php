@@ -12,15 +12,19 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id
  * @property int $id_gunung_jalur
  * @property int $kuota
+ * @property int $status
  * @property string $tanggal
  * @property int $created_at
  * @property int $updated_at
  * @property int $created_by
  * @property int $updated_by
+ * @property GunungJalur $gunungJalur
  * @property int $status_hapus
  */
 class GunungKuota extends \yii\db\ActiveRecord
 {
+    public $id_gunung;
+
     /**
      * {@inheritdoc}
      */
@@ -35,10 +39,12 @@ class GunungKuota extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['id_gunung_jalur','tanggal'],'unique','targetAttribute' => ['id_gunung_jalur','tanggal']],
             [['id_gunung_jalur', 'kuota'], 'required'],
             [['id_gunung_jalur', 'kuota'], 'integer'],
-            [['tanggal'], 'safe'],
+            [['tanggal','id_gunung'], 'safe'],
 
+            ['status','default','value' => 1],
             [['created_at','updated_at','created_by','updated_by'],'integer'],
             ['status_hapus','default','value' => 0],
         ];
@@ -68,7 +74,7 @@ class GunungKuota extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'id_gunung_jalur' => Yii::t('app', 'Id Gunung Jalur'),
+            'id_gunung_jalur' => Yii::t('app', 'Jalur'),
             'kuota' => Yii::t('app', 'Kuota'),
             'tanggal' => Yii::t('app', 'Tanggal'),
         ];
@@ -80,5 +86,10 @@ class GunungKuota extends \yii\db\ActiveRecord
         $query->andWhere('status_hapus IS NULL OR status_hapus = 0');
 
         return $query;
+    }
+
+    public function getGunungJalur()
+    {
+        return $this->hasOne(GunungJalur::class,['id' => 'id_gunung_jalur']);
     }
 }
