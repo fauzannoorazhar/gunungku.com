@@ -82,26 +82,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => $model->deskripsi_kontak,
             ],
-            [
-                'attribute' => 'created_at',
-                'format' => 'raw',
-                'value' => Yii::$app->formatter->asRelativeTime($model->created_at),
-            ],
-            [
-                'attribute' => 'updated_at',
-                'format' => 'raw',
-                'value' => Yii::$app->formatter->asRelativeTime($model->updated_at),
-            ],
-            [
-                'attribute' => 'created_by',
-                'format' => 'raw',
-                'value' => $model->created_by,
-            ],
-            [
-                'attribute' => 'updated_by',
-                'format' => 'raw',
-                'value' => $model->updated_by,
-            ],
+                [
+                    'attribute' => 'created_at',
+                    'format' => 'raw',
+                    'value' => Yii::$app->formatter->asRelativeTime($model->created_at),
+                ],
+                [
+                    'attribute' => 'updated_at',
+                    'format' => 'raw',
+                    'value' => Yii::$app->formatter->asRelativeTime($model->updated_at),
+                ],
+                [
+                    'attribute' => 'created_by',
+                    'format' => 'raw',
+                    'value' => $model->created_by,
+                ],
+                [
+                    'attribute' => 'updated_by',
+                    'format' => 'raw',
+                    'value' => $model->updated_by,
+                ],
         ],
     ]) ?>
 
@@ -110,6 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-footer">
         <?= Html::a('<i class="fa fa-pencil"></i> Sunting Gunung', ['update', 'id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
         <?= Html::a('<i class="fa fa-list"></i> Daftar Gunung', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-calendar"></i> Kuota Pendakian', ['gunung/view-kuota','id' => $model->id], ['class' => 'btn btn-primary btn-flat']) ?>
     </div>
 
 </div>

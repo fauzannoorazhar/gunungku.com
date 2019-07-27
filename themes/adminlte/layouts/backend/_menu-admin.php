@@ -9,9 +9,9 @@ use app\models\UserRole;
         'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
         'items' => [
             ['label' => 'MENU NAVIGASI','options' => ['class' => 'header']],
-            ['label' => 'Beranda', 'icon' => 'dashboard', 'url' => ['admin/']],
+            ['label' => 'Dashboard', 'icon' => 'dashboard', 'url' => ['admin/']],
             ['label' => 'Pendaki', 'icon' => 'blind', 'url' => ['pendaki/']],
-            ['label' => 'Gunung', 'icon' => 'dashboard', 'url' => ['gunung/']],
+            ['label' => 'Gunung', 'icon' => 'tree', 'url' => ['gunung/']],
             ['label' => 'Gunung Jalur', 'icon' => 'map', 'url' => ['gunung-jalur/']],
             ['label' => 'Gunung Jalur Pos', 'icon' => 'map-signs', 'url' => ['gunung-jalur-pos/']],
             ['label' => 'Gunung Kuota', 'icon' => 'calendar', 'url' => ['gunung-kuota/']],

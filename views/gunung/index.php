@@ -100,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'encodeLabel' => false,
                 'value' => function(\app\models\Gunung $data) {
-                    return Html::a('<i class="fa fa-calendar-check-o"></i>',['gunung/view-kuota','id' => $data->id],['data-toggle' => 'tooltip','title' => 'Lihat Kuota Hari']);
+                    return Html::a('<i class="fa fa-calendar"></i>',['gunung/view-kuota','id' => $data->id],['data-toggle' => 'tooltip','title' => 'Lihat Kuota Hari']);
                 },
                 'headerOptions' => ['style' => 'text-align:center; width: 35px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
