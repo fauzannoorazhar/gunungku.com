@@ -136,9 +136,11 @@ class GunungController extends Controller
     public function actionViewKuota($id)
     {
         $model = $this->findModel($id);
+        $bulan = @$_GET['bulan'] ?? date('m');
 
         return $this->render('view-kuota', [
             'model' => $model,
+            'bulan' => $bulan
         ]);
     }
 

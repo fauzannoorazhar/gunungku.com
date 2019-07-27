@@ -42,6 +42,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => \app\components\Helper::getTanggal($model->tanggal),
             ],
+            [
+                'attribute' => 'created_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->created_at),
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->updated_at),
+            ],
+            [
+                'attribute' => 'created_by',
+                'format' => 'raw',
+                'value' => $model->created_by,
+            ],
+            [
+                'attribute' => 'updated_by',
+                'format' => 'raw',
+                'value' => $model->updated_by,
+            ],
         ],
     ]) ?>
 

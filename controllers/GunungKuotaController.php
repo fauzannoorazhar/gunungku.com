@@ -80,10 +80,11 @@ class GunungKuotaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($id_gunung_jalur=null, $tanggal=null)
+    public function actionCreate($id_gunung=null,$id_gunung_jalur=null, $tanggal=null)
     {
         $model = new GunungKuota();
         $model->id_gunung_jalur = $id_gunung_jalur;
+        $model->id_gunung = $id_gunung;
 
         if ($tanggal === null) {
             $model->tanggal = date('Y-m-d');
@@ -120,6 +121,7 @@ class GunungKuotaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->id_gunung = @$model->gunungJalur->id_gunung;
         $referrer = Yii::$app->request->referrer;
 
         if ($model->load(Yii::$app->request->post())) {

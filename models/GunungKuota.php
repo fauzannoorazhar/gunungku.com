@@ -92,4 +92,18 @@ class GunungKuota extends \yii\db\ActiveRecord
     {
         return $this->hasOne(GunungJalur::class,['id' => 'id_gunung_jalur']);
     }
+
+    public static function findGunungKuotaByCondition($params=[])
+    {
+        $query = static::find()
+            ->andFilterWhere(['id_gunung_jalur' => @$params['id_gunung_jalur']])
+            ->andFilterWhere(['tanggal' => @$params['tanggal']])
+            ->one();
+
+        if ($query === null) {
+            return null;
+        }
+
+        return $query;
+    }
 }

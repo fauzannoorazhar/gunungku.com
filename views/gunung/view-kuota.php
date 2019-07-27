@@ -11,6 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Gunung'), 'url' => [
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+
 <div class="gunung-view box box-danger">
 
     <div class="box-header">
@@ -69,6 +70,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
+<?= Html::beginForm(['gunung/view-kuota', 'id' => $model->id], 'GET') ?>
+<div class="row">
+    <div class="col-sm-2 col-xs-4">
+        <?= Html::dropDownList('bulan', $bulan, \app\components\Helper::getBulanListFilter(), ['class' => 'form-control','style' => 'width: 180px']); ?>
+    </div>
+    <div class="col-sm-2 col-xs-4">
+        <?= Html::submitButton('<i class="fa fa-search"></i> Filter', ['class' => 'btn btn-primary btn-flat']); ?>
+    </div>
+</div>
+<?= Html::endForm(); ?>
+
+<div>&nbsp;</div>
+
 <div class="box box-danger">
     <div class="box-header with-border">
         <h3 class="box-title">
@@ -92,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no = 1; foreach (\app\components\Helper::getHariBulanList() as $hari) { ?>
+                    <?php $no = 1; foreach (\app\components\Helper::getHariBulanList($bulan) as $hari) { ?>
                         <tr>
                             <td style="text-align: center"><?= $no++ ?></td>
                             <td style="text-align: center">
@@ -100,9 +114,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             </td>
                             <?php foreach($model->manyGunungJalur as $gunungJalur) { ?>
                                 <?php /* @var $gunungJalur \app\models\GunungJalur */ ?>
+                                <?php $gunungKuota = \app\models\GunungKuota::findGunungKuotaByCondition(['id_gunung_jalur' => $gunungJalur->id,'tanggal' => $hari]) ?>
                                 <td style="text-align: center">
-                                    <?= Html::a('<i class="fa fa-plus"></i>',['gunung-kuota/create','id_gunung_jalur' => $gunungJalur->id,'tanggal' => $hari],['data-toggle' => 'tooltip','title' => 'Input Kuota']) ?>
-                                    <?= "" ?>
+                                    <?php if ($gunungKuota === null) { ?>
+                                        <?= Html::a('<i class="fa fa-plus"></i>',['gunung-kuota/create','id_gunung' => $model->id,'id_gunung_jalur' => $gunungJalur->id,'tanggal' => $hari],['data-toggle' => 'tooltip','title' => 'Input Kuota']) ?>
+                                        <?= '<span style="border-bottom: dashed 1px">'.$model->kuota.'</span>' ?>
+                                    <?php } else { ?>
+                                        <?= Html::a('<i class="fa fa-pencil"></i>',['gunung-kuota/update','id' => $gunungKuota->id],['data-toggle' => 'tooltip','title' => 'Update Kuota']) ?>
+                                        <?= '<span data-toggle="tooltip" title="Kuota Sudah Di Input">'.@$gunungKuota->kuota.'</span>' ?>
+                                    <?php } ?>
                                 </td>
                             <?php } ?>
                         </tr>
