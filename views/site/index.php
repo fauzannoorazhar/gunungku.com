@@ -10,108 +10,7 @@ $this->title = "Info Pendaki Gunung - Website Informasi Gunung Indonesia";
     <div class="container">
         <div class="section-title text-center">
             <h3><?= Yii::t('app','GUNUNG TERPOPULER') ?></h3>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="propertie-item set-bg" data-setbg="img/propertie/1.jpg">
-                    <div class="sale-notic">FOR SALE</div>
-                    <div class="propertie-info text-white">
-                        <div class="info-warp">
-                            <h5>176 Kingsberry, Dr Anderson</h5>
-                            <p><i class="fa fa-map-marker"></i> Rochester, NY 14626</p>
-                        </div>
-                        <div class="price">$1,777,000</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="propertie-item set-bg" data-setbg="img/propertie/2.jpg">
-                    <div class="rent-notic">FOR Rent</div>
-                    <div class="propertie-info text-white">
-                        <div class="info-warp">
-                            <h5>45 Lianne Dr, Greece Street</h5>
-                            <p><i class="fa fa-map-marker"></i> Tasley, VA 23441</p>
-                        </div>
-                        <div class="price">$1255/month</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="propertie-item set-bg" data-setbg="img/propertie/3.jpg">
-                    <div class="sale-notic">FOR SALE</div>
-                    <div class="propertie-info text-white">
-                        <div class="info-warp">
-                            <h5>6101 Aqua Ave Apt 603</h5>
-                            <p><i class="fa fa-map-marker"></i> Miami Beach, FL 33141</p>
-                        </div>
-                        <div class="price">$150,000</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="propertie-item set-bg" data-setbg="img/propertie/4.jpg">
-                    <div class="rent-notic">FOR Rent</div>
-                    <div class="propertie-info text-white">
-                        <div class="info-warp">
-                            <h5>339 N Oakhurst Dr Apt 303</h5>
-                            <p><i class="fa fa-map-marker"></i> Beverly Hills, CA 90210</p>
-                        </div>
-                        <div class="price">$3000/month</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Properties section end -->
-
-<!-- Services section -->
-<section class="services-section spad set-bg" data-setbg="img/service-bg.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <img src="img/service.jpg" alt="">
-            </div>
-            <div class="col-lg-5 offset-lg-1 pl-lg-0">
-                <div class="section-title text-white">
-                    <h3>OUR SERVICES</h3>
-                    <p>We provide the perfect service for </p>
-                </div>
-                <div class="services">
-                    <div class="service-item">
-                        <i class="fa fa-comments"></i>
-                        <div class="service-text">
-                            <h5>Consultant Service</h5>
-                            <p>In Aenean purus, pretium sito amet sapien denim consectet sed urna placerat sodales magna leo.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fa fa-home"></i>
-                        <div class="service-text">
-                            <h5>Properties Management</h5>
-                            <p>In Aenean purus, pretium sito amet sapien denim consectet sed urna placerat sodales magna leo.</p>
-                        </div>
-                    </div>
-                    <div class="service-item">
-                        <i class="fa fa-briefcase"></i>
-                        <div class="service-text">
-                            <h5>Renting and Selling</h5>
-                            <p>In Aenean purus, pretium sito amet sapien denim consectet sed urna placerat sodales magna leo.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Services section end -->
-
-<!-- feature section -->
-<section class="feature-section spad">
-    <div class="container">
-        <div class="section-title text-center">
-            <h3>Featured Listings</h3>
-            <p>Browse houses and flats for sale and to rent in your area</p>
+            <p>Daftar gunung terpopuler yang di kunjungi pendaki tahun <?= date('Y') ?></p>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-6">
@@ -327,7 +226,48 @@ $this->title = "Info Pendaki Gunung - Website Informasi Gunung Indonesia";
         </div>
     </div>
 </section>
-<!-- feature section end -->
+<!-- Properties section end -->
+
+<!-- Services section -->
+<section class="services-section spad set-bg" data-setbg="img/service-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="img/service.jpg" alt="">
+            </div>
+            <div class="col-lg-5 offset-lg-1 pl-lg-0">
+                <div class="section-title text-white">
+                    <h3>OUR SERVICES</h3>
+                    <p>We provide the perfect service for </p>
+                </div>
+                <div class="services">
+                    <div class="service-item">
+                        <i class="fa fa-comments"></i>
+                        <div class="service-text">
+                            <h5>Consultant Service</h5>
+                            <p>In Aenean purus, pretium sito amet sapien denim consectet sed urna placerat sodales magna leo.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa fa-home"></i>
+                        <div class="service-text">
+                            <h5>Properties Management</h5>
+                            <p>In Aenean purus, pretium sito amet sapien denim consectet sed urna placerat sodales magna leo.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa fa-briefcase"></i>
+                        <div class="service-text">
+                            <h5>Renting and Selling</h5>
+                            <p>In Aenean purus, pretium sito amet sapien denim consectet sed urna placerat sodales magna leo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services section end -->
 
 <!-- Blog section -->
 <section class="blog-section spad">

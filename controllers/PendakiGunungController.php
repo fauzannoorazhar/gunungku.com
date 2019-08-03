@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Pendaki;
-use app\models\PendakiSearch;
+use app\models\PendakiGunung;
+use app\models\PendakiGunungSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -19,9 +19,9 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
 /**
- * PendakiController implements the CRUD actions for Pendaki model.
+ * PendakiGunungController implements the CRUD actions for PendakiGunung model.
  */
-class PendakiController extends Controller
+class PendakiGunungController extends Controller
 {
     /**
      * @inheritdoc
@@ -33,7 +33,7 @@ class PendakiController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index','view','create','update','delete','view-pendakian'],
+                        'actions' => ['index','view','create','update','delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -49,12 +49,12 @@ class PendakiController extends Controller
     }
 
     /**
-     * Lists all Pendaki models.
+     * Lists all PendakiGunung models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PendakiSearch();
+        $searchModel = new PendakiGunungSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -64,7 +64,7 @@ class PendakiController extends Controller
     }
 
     /**
-     * Displays a single Pendaki model.
+     * Displays a single PendakiGunung model.
      * @param integer $id
      * @return mixed
      */
@@ -75,21 +75,14 @@ class PendakiController extends Controller
         ]);
     }
 
-    public function actionViewPendakian($id)
-    {
-        return $this->render('view-pendakian', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
     /**
-     * Creates a new Pendaki model.
+     * Creates a new PendakiGunung model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Pendaki();
+        $model = new PendakiGunung();
 
         $referrer = Yii::$app->request->referrer;
 
@@ -112,7 +105,7 @@ class PendakiController extends Controller
     }
 
     /**
-     * Updates an existing Pendaki model.
+     * Updates an existing PendakiGunung model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -141,7 +134,7 @@ class PendakiController extends Controller
     }
 
     /**
-     * Deletes an existing Pendaki model.
+     * Deletes an existing PendakiGunung model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -160,15 +153,15 @@ class PendakiController extends Controller
     }
 
     /**
-     * Finds the Pendaki model based on its primary key value.
+     * Finds the PendakiGunung model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Pendaki the loaded model
+     * @return PendakiGunung the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Pendaki::findOne($id)) !== null) {
+        if (($model = PendakiGunung::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -26,6 +26,10 @@ use yii\behaviors\TimestampBehavior;
  * @property int $updated_at
  * @property int $status_hapus
  * @property string $slug
+ *
+ *
+ * @property integer $countPendakigunung
+ * @property PendakiGunung $manyPendakiGunung
  */
 class Pendaki extends \yii\db\ActiveRecord
 {
@@ -99,6 +103,16 @@ class Pendaki extends \yii\db\ActiveRecord
             'id_kabupaten' => Yii::t('app', 'Id Kabupaten'),
             'file_pengenal' => Yii::t('app', 'File Pengenal'),
         ];
+    }
+
+    public function getManyPendakiGunung()
+    {
+        return $this->hasMany(PendakiGunung::class,['id_pendaki' => 'id']);
+    }
+
+    public function getCountPendakigunung()
+    {
+        return count($this->manyPendakiGunung);
     }
 
     public function getNamaJenisKelamin()

@@ -82,7 +82,7 @@ app\assets\FrontendAsset::register($this);
     <!-- Hero section -->
     <section class="hero-section set-bg" data-setbg="img/bg2.jpg">
         <div class="container hero-text text-white">
-            <h2><?= Yii::t('app','temukan petualangan gunung anda') ?></h2>
+            <h2><?= Yii::t('app','temukan petualangan gunung anda disini') ?></h2>
             <p><i><?= Yii::t('app','"Petualangan hanyalah tentang kerendahan hati, <br> bukan tentang harga atau pembuktian diri"') ?></i></p>
             <a href="#" class="site-btn"><?= Yii::t('app','LIHAT DAFTAR GUNUNG') ?></a>
         </div>
