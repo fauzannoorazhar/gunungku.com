@@ -27,11 +27,20 @@ class M190727170610Table_pendaki_gunung extends Migration
         return false;
     }
 
-    /*
+
     // Use up()/down() to run migration code without a transaction.
     public function up()
     {
-
+        $this->createTable('{{%pendaki_gunung}}',[
+            'id' => $this->primaryKey(),
+            'id_pendaki' => $this->integer(11)->notNull(),
+            'id_gunung_jalur_masuk' => $this->integer(11)->notNull(),
+            'id_gunung_jalur_keluar' => $this->integer(11)->notNull(),
+            'tanggal_masuk' => $this->date(),
+            'tanggal_keluar' => $this->date(),
+            'created_at' => $this->integer(11)->notNull(),
+            'updated_at' => $this->integer(11)->notNull()
+        ]);
     }
 
     public function down()
@@ -40,5 +49,5 @@ class M190727170610Table_pendaki_gunung extends Migration
 
         return false;
     }
-    */
+
 }

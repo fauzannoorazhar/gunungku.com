@@ -77,6 +77,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => $model->file_pengenal,
             ],
+            [
+                'attribute' => 'slug',
+                'format' => 'raw',
+                'value' => $model->slug,
+            ],
         ],
     ]) ?>
 
