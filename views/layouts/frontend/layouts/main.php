@@ -50,14 +50,14 @@ app\assets\FrontendAsset::register($this);
                         </div>
                         <div class="panel-user">
                             <a href=""><i class="fa fa-user-circle-o"></i> Register</a>
-                            <a href=""><i class="fa fa-sign-in"></i> Login</a>
+                            <a href="<?= \yii\helpers\Url::to(['site/login']) ?>"><i class="fa fa-sign-in"></i> Login</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row" style="margin-left: 2%; margin-right: 2%;">
                 <div class="col-12">
                     <div class="site-navbar">
                         <a href="#" class="site-logo"><img src="img/logo.png" alt=""></a>

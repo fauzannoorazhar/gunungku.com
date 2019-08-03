@@ -24,6 +24,8 @@ class FrontendAsset extends AssetBundle
         'css/style.css',
     ];
     public $js = [
+        'js/jquery-3.2.1.min.js',
+        'js/bootstrap.min.js',
         'js/owl.carousel.min.js',
         'js/masonry.pkgd.min.js',
         'js/magnific-popup.min.js',
@@ -34,7 +36,7 @@ class FrontendAsset extends AssetBundle
         'yii\bootstrap\BootstrapAsset',
     ];
     public $jsOptions = [
-        'position' => \yii\web\View::POS_HEAD,
+        'position' => \yii\web\View::POS_END,
     ];
 
 }
