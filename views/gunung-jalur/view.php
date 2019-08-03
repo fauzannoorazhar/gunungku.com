@@ -42,6 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => $model->jam_perjalanan,
             ],
+            [
+                'attribute' => 'slug',
+                'format' => 'raw',
+                'value' => $model->slug,
+            ],
         ],
     ]) ?>
 

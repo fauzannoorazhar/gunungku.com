@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use yii\helpers\StringHelper;
@@ -35,6 +36,7 @@ use yii\helpers\StringHelper;
  * @property GunungJalur $manyGunungJalur
  * @property integer $countGunungJalur
  * @property string $deskripsi_kontak
+ * @property string $slug
  */
 class Gunung extends \yii\db\ActiveRecord
 {
@@ -62,7 +64,7 @@ class Gunung extends \yii\db\ActiveRecord
         return [
             ['nama','unique'],
             [['nama', 'deskripsi', 'ketinggian', 'id_jenis_gunung','status_aktif', 'status'], 'required'],
-            [['deskripsi', 'deskripsi_izin', 'deskripsi_wajib', 'deskripsi_dilarang', 'deskripsi_sanksi', 'deskripsi_kontak'], 'string'],
+            [['deskripsi', 'deskripsi_izin', 'deskripsi_wajib', 'deskripsi_dilarang', 'deskripsi_sanksi', 'deskripsi_kontak','slug'], 'string'],
             [['ketinggian', 'id_jenis_gunung', 'status_aktif', 'status', 'kuota'], 'integer'],
             [['nama'], 'string', 'max' => 255],
 
@@ -84,7 +86,12 @@ class Gunung extends \yii\db\ActiveRecord
                  'class' => BlameableBehavior::className(),
                  'createdByAttribute' => 'created_by',
                  'updatedByAttribute' => 'updated_by',
-             ],
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'nama',
+                'slugAttribute' => 'slug',
+            ],
         ];
     }
 

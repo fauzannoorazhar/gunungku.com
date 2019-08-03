@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 
@@ -23,6 +24,7 @@ use yii\helpers\ArrayHelper;
  * @property GunungJalurPos $manyGunungJalurPos
  * @property int $countGunungJalurPos
  * @property int $status_hapus
+ * @property string $slug
  */
 class GunungJalur extends \yii\db\ActiveRecord
 {
@@ -46,6 +48,7 @@ class GunungJalur extends \yii\db\ActiveRecord
             [['id_gunung'], 'integer'],
             [['jarak_puncak', 'jam_perjalanan'], 'number'],
             [['nama'], 'string', 'max' => 255],
+            ['slug','safe'],
 
             [['created_at','updated_at','created_by','updated_by'],'integer'],
             ['status_hapus','default','value' => 0],
@@ -65,6 +68,11 @@ class GunungJalur extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => 'updated_by',
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'nama',
+                'slugAttribute' => 'slug',
             ],
         ];
     }

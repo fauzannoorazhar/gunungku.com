@@ -65,6 +65,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'text-align:center; width: 175px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
+            [
+                'label' => "",
+                'format' => 'raw',
+                'encodeLabel' => false,
+                'value' => function(\app\models\Pendaki $data) {
+                    return Html::a('<i class="fa fa-calendar-check-o"></i>',['pendaki/view-pendakian','id' => $data->id],['data-toggle' => 'tooltip','title' => 'Lihat Daftar Pendakian Gunung']);
+                },
+                'headerOptions' => ['style' => 'text-align:center; width: 35px'],
+                'contentOptions' => ['style' => 'text-align:center;'],
+            ],
 
             [
                 'class' => 'yii\grid\ActionColumn',

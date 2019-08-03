@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\behaviors\BlameableBehavior;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii2tech\ar\position\PositionBehavior;
 
@@ -26,6 +27,7 @@ use yii2tech\ar\position\PositionBehavior;
  * @property string $iconSumberAir
  * @property GunungJalur $gunungJalur
  * @property int $status_hapus
+ * @property string $slug
  */
 class GunungJalurPos extends \yii\db\ActiveRecord
 {
@@ -46,6 +48,7 @@ class GunungJalurPos extends \yii\db\ActiveRecord
             [['id_gunung_jalur', 'nama'], 'required'],
             [['id_gunung_jalur', 'status_kemah', 'sumber_air','urutan'], 'integer'],
             [['nama'], 'string', 'max' => 255],
+            ['slug','safe'],
 
             [['created_at','updated_at','created_by','updated_by'],'integer'],
             [['status_hapus'],'default','value' => 0],
@@ -69,6 +72,11 @@ class GunungJalurPos extends \yii\db\ActiveRecord
             [
                 'class' => PositionBehavior::className(),
                 'positionAttribute' => 'urutan',
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'nama',
+                'slugAttribute' => 'slug',
             ],
         ];
     }

@@ -72,9 +72,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->redirect(['admin/index']);
+        $this->layout = Yii::getAlias('@main-frontend');
 
-        //return $this->render('index');
+        return $this->render('index');
     }
 
     /**

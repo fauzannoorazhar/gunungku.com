@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -24,6 +25,11 @@ use yii\behaviors\TimestampBehavior;
  * @property int $created_at
  * @property int $updated_at
  * @property int $status_hapus
+ * @property string $slug
+ *
+ *
+ * @property integer $countPendakigunung
+ * @property PendakiGunung $manyPendakiGunung
  */
 class Pendaki extends \yii\db\ActiveRecord
 {
@@ -54,6 +60,7 @@ class Pendaki extends \yii\db\ActiveRecord
             [['nama', 'email', 'file_pengenal'], 'string', 'max' => 255],
             ['file_pengenal','default','value' => null],
             //['email','email'],
+            ['slug','safe'],
 
             [['created_at','updated_at'],'integer'],
             ['status_hapus','default','value' => 0],
@@ -68,6 +75,11 @@ class Pendaki extends \yii\db\ActiveRecord
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
                 'value' => time(),
+            ],
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'nama',
+                'slugAttribute' => 'slug',
             ],
         ];
     }
@@ -91,6 +103,16 @@ class Pendaki extends \yii\db\ActiveRecord
             'id_kabupaten' => Yii::t('app', 'Id Kabupaten'),
             'file_pengenal' => Yii::t('app', 'File Pengenal'),
         ];
+    }
+
+    public function getManyPendakiGunung()
+    {
+        return $this->hasMany(PendakiGunung::class,['id_pendaki' => 'id']);
+    }
+
+    public function getCountPendakigunung()
+    {
+        return count($this->manyPendakiGunung);
     }
 
     public function getNamaJenisKelamin()

@@ -102,6 +102,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => $model->updated_by,
                 ],
+                [
+                    'attribute' => 'slug',
+                    'format' => 'raw',
+                    'value' => $model->slug,
+                ],
         ],
     ]) ?>
 

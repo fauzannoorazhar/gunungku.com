@@ -12,6 +12,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
+<?= Html::beginForm(['gunung/view-kuota', 'id' => $model->id], 'GET') ?>
+<div class="row">
+    <div class="col-sm-2 col-xs-4">
+        <?= Html::dropDownList('bulan', $bulan, \app\components\Helper::getBulanListFilter(), ['class' => 'form-control','style' => 'width: 180px']); ?>
+    </div>
+    <div class="col-sm-2 col-xs-4">
+        <?= Html::submitButton('<i class="fa fa-search"></i> Filter', ['class' => 'btn btn-primary btn-flat']); ?>
+    </div>
+</div>
+<?= Html::endForm(); ?>
+
+<div>&nbsp;</div>
+
 <div class="gunung-view box box-danger">
 
     <div class="box-header">
@@ -69,19 +82,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 </div>
-
-<?= Html::beginForm(['gunung/view-kuota', 'id' => $model->id], 'GET') ?>
-<div class="row">
-    <div class="col-sm-2 col-xs-4">
-        <?= Html::dropDownList('bulan', $bulan, \app\components\Helper::getBulanListFilter(), ['class' => 'form-control','style' => 'width: 180px']); ?>
-    </div>
-    <div class="col-sm-2 col-xs-4">
-        <?= Html::submitButton('<i class="fa fa-search"></i> Filter', ['class' => 'btn btn-primary btn-flat']); ?>
-    </div>
-</div>
-<?= Html::endForm(); ?>
-
-<div>&nbsp;</div>
 
 <div class="box box-danger">
     <div class="box-header with-border">

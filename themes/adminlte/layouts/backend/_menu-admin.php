@@ -8,6 +8,7 @@ use app\models\UserRole;
     [
         'options' => ['class' => 'sidebar-menu', 'data-widget' => 'tree'],
         'items' => [
+            ['label' => 'Halaman Depan', 'icon' => 'circle-o', 'url' => ['site/'], 'template' => '<a href="{url}" target="_blank">{icon} {label}</a>'],
             ['label' => 'MENU NAVIGASI','options' => ['class' => 'header']],
             ['label' => 'Dashboard', 'icon' => 'dashboard', 'url' => ['admin/']],
             ['label' => 'Pendaki', 'icon' => 'blind', 'url' => ['pendaki/']],
