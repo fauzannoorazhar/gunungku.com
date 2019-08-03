@@ -152,6 +152,8 @@ use yii\helpers\Html;
             'preset' => 'advanced'
         ]) ?>
 
+        <?= $form->field($model, 'imageFile')->fileInput() ?>
+
         <?= Html::hiddenInput('referrer',$referrer); ?>
 
 	</div>

@@ -29,14 +29,18 @@ use yii\helpers\StringHelper;
  * @property string $deskripsi_wajib
  * @property string $deskripsi_dilarang
  * @property string $deskripsi_sanksi
+ * @property string $slug
+ * @property string $deskripsi_kontak
+ * @property string $link_website
+ * @property string $link_map
+ * @property string $gambar
+ *
  * @property JenisGunung $jenisGunung
  * @property string $statusGunungAktif
  * @property string $statusGunung
  * @property string $ketinggianMdpl
  * @property GunungJalur $manyGunungJalur
  * @property integer $countGunungJalur
- * @property string $deskripsi_kontak
- * @property string $slug
  */
 class Gunung extends \yii\db\ActiveRecord
 {
@@ -47,6 +51,11 @@ class Gunung extends \yii\db\ActiveRecord
 
     const DIBUKA = 10;
     const DITUTUP = 20;
+
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
 
     /**
      * {@inheritdoc}
@@ -66,10 +75,11 @@ class Gunung extends \yii\db\ActiveRecord
             [['nama', 'deskripsi', 'ketinggian', 'id_jenis_gunung','status_aktif', 'status'], 'required'],
             [['deskripsi', 'deskripsi_izin', 'deskripsi_wajib', 'deskripsi_dilarang', 'deskripsi_sanksi', 'deskripsi_kontak','slug'], 'string'],
             [['ketinggian', 'id_jenis_gunung', 'status_aktif', 'status', 'kuota'], 'integer'],
-            [['nama'], 'string', 'max' => 255],
+            [['nama','link_website','link_map','gambar'], 'string', 'max' => 255],
 
             [['created_at','updated_at','created_by','updated_by'],'integer'],
             ['status_hapus','default','value' => 0],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -168,5 +178,15 @@ class Gunung extends \yii\db\ActiveRecord
     public function getDeskripsiTruncate($lenght=250)
     {
         return StringHelper::truncate($this->deskripsi, $lenght);
+    }
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

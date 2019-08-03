@@ -1,6 +1,9 @@
 web/exports/*
 !web/exports/.gitkeep
 
+web/uploads/*
+!web/uploads/.gitkeep
+
 web/imports/*
 
 web/uploads/*
