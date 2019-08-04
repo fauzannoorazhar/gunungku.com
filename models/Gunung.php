@@ -36,12 +36,18 @@ use yii\web\UploadedFile;
  * @property string $link_website
  * @property string $link_map
  * @property string $gambar
+ * @property string $lokasi
  *
  * @property JenisGunung $jenisGunung
  * @property string $statusGunungAktif
  * @property string $statusGunung
  * @property string $ketinggianMdpl
  * @property GunungJalur $manyGunungJalur
+ * @property User $userCreate
+ * @property string $pathGambar
+ * @property string $labelStatus
+ * @property integer $countJalurPos
+ * @property GunungJalurPos $manyGunungJalurPos
  * @property integer $countGunungJalur
  */
 class Gunung extends \yii\db\ActiveRecord
@@ -72,7 +78,8 @@ class Gunung extends \yii\db\ActiveRecord
             [['nama', 'deskripsi', 'ketinggian', 'id_jenis_gunung','status_aktif', 'status'], 'required'],
             [['deskripsi', 'deskripsi_izin', 'deskripsi_wajib', 'deskripsi_dilarang', 'deskripsi_sanksi', 'deskripsi_kontak','slug'], 'string'],
             [['ketinggian', 'id_jenis_gunung', 'status_aktif', 'status', 'kuota'], 'integer'],
-            [['nama','link_website','link_map','gambar'], 'string', 'max' => 255],
+            [['nama','link_website','link_map','gambar','lokasi'], 'string', 'max' => 255],
+            [['link_website','link_map'],'url'],
 
             [['created_at','updated_at','created_by','updated_by'], 'integer'],
             ['status_hapus','default','value' => 0],
@@ -130,9 +137,14 @@ class Gunung extends \yii\db\ActiveRecord
     public static function find()
     {
         $query = parent::find();
-        $query->andWhere('status_hapus IS NULL OR status_hapus = 0');
+        $query->andWhere('gunung.status_hapus IS NULL OR gunung.status_hapus = 0');
 
         return $query;
+    }
+
+    public function getUserCreate()
+    {
+        return $this->hasOne(User::class,['id' => 'created_by']);
     }
 
     public function getJenisGunung()
@@ -148,6 +160,30 @@ class Gunung extends \yii\db\ActiveRecord
     public function getCountGunungJalur()
     {
         return count($this->manyGunungJalur);
+    }
+
+    public function getCountKuotaJalur($tanggal=null)
+    {
+        $query = $this->getManyGunungJalur()
+            ->joinWith('manyGunungKuota');
+
+        if (is_null($tanggal)) {
+            $count = $query->sum('gunung_kuota.kuota');
+        } else {
+            $count = $query->andWhere(['gunung_kuota.tanggal' => $tanggal])->sum('gunung_kuota.kuota');
+        }
+
+        return $count ?? 0;
+    }
+
+    public function getManyGunungJalurPos()
+    {
+        return $this->hasMany(GunungJalurPos::class,['id_gunung_jalur' => 'id'])->via('manyGunungJalur');
+    }
+
+    public function getCountJalurPos()
+    {
+        return count($this->manyGunungJalurPos);
     }
 
     public function getKetinggianMdpl()
@@ -225,6 +261,24 @@ class Gunung extends \yii\db\ActiveRecord
             return Html::img('@web/uploads/'. $this->gambar,$htmlOptions);
         } else  {
             return Html::img("@web/images/noimage.jpg", $htmlOptions);
+        }
+    }
+
+    public function getPathGambar()
+    {
+        if ($this->isFileExist($this->gambar)) {
+            return Yii::getAlias('@web').'/uploads/'. $this->gambar;
+        } else  {
+            return Yii::getAlias('@web').'/images/noimage.jpg';
+        }
+    }
+
+    public function getLabelStatus()
+    {
+        if ($this->status == self::DIBUKA) {
+            return 'rent-notic';
+        } else {
+            return 'sale-notic';
         }
     }
 }

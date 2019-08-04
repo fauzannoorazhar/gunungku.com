@@ -98,7 +98,7 @@ class GunungJalurPos extends \yii\db\ActiveRecord
     public static function find()
     {
         $query = parent::find();
-        $query->andWhere('status_hapus IS NULL OR status_hapus = 0');
+        $query->andWhere('gunung_jalur_pos.status_hapus IS NULL OR gunung_jalur_pos.status_hapus = 0');
 
         return $query;
     }

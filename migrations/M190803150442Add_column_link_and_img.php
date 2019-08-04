@@ -33,6 +33,7 @@ class M190803150442Add_column_link_and_img extends Migration
     {
         $this->addColumn('gunung','link_website', $this->string(255));
         $this->addColumn('gunung','link_map', $this->string(255));
+        $this->addColumn('gunung','lokasi', $this->string(255));
         $this->addColumn('gunung','gambar', $this->string(255));
     }
 

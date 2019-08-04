@@ -20,11 +20,13 @@ use yii\helpers\ArrayHelper;
  * @property int $updated_at
  * @property int $created_by
  * @property int $updated_by
- * @property Gunung $gunung
- * @property GunungJalurPos $manyGunungJalurPos
- * @property int $countGunungJalurPos
  * @property int $status_hapus
  * @property string $slug
+ *
+ * @property Gunung $gunung
+ * @property GunungJalurPos $manyGunungJalurPos
+ * @property GunungKuota $manyGunungKuota
+ * @property int $countGunungJalurPos
  */
 class GunungJalur extends \yii\db\ActiveRecord
 {
@@ -94,7 +96,7 @@ class GunungJalur extends \yii\db\ActiveRecord
     public static function find()
     {
         $query = parent::find();
-        $query->andWhere('status_hapus IS NULL OR status_hapus = 0');
+        $query->andWhere('gunung_jalur.status_hapus IS NULL OR gunung_jalur.status_hapus = 0');
 
         return $query;
     }
@@ -113,5 +115,10 @@ class GunungJalur extends \yii\db\ActiveRecord
     public function getCountGunungJalurPos()
     {
         return count($this->manyGunungJalurPos);
+    }
+
+    public function getManyGunungKuota()
+    {
+        return $this->hasMany(GunungKuota::class,['id_gunung_jalur' => 'id']);
     }
 }

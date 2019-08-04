@@ -33,6 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->deskripsi,
             ],
             [
+                'attribute' => 'lokasi',
+                'format' => 'raw',
+                'value' => $model->lokasi,
+            ],
+            [
                 'attribute' => 'ketinggian',
                 'format' => 'raw',
                 'value' => $model->ketinggianMdpl,
@@ -56,6 +61,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'kuota',
                 'format' => 'raw',
                 'value' => $model->kuota,
+            ],
+            [
+                'attribute' => 'link_website',
+                'format' => 'raw',
+                'value' => $model->link_website,
+            ],
+            [
+                'attribute' => 'link_map',
+                'format' => 'raw',
+                'value' => $model->link_map,
             ],
             [
                 'attribute' => 'deskripsi_izin',
@@ -82,36 +97,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => $model->deskripsi_kontak,
             ],
-                [
-                    'attribute' => 'created_at',
-                    'format' => 'raw',
-                    'value' => Yii::$app->formatter->asRelativeTime($model->created_at),
-                ],
-                [
-                    'attribute' => 'updated_at',
-                    'format' => 'raw',
-                    'value' => Yii::$app->formatter->asRelativeTime($model->updated_at),
-                ],
-                [
-                    'attribute' => 'created_by',
-                    'format' => 'raw',
-                    'value' => $model->created_by,
-                ],
-                [
-                    'attribute' => 'updated_by',
-                    'format' => 'raw',
-                    'value' => $model->updated_by,
-                ],
-                [
-                    'attribute' => 'slug',
-                    'format' => 'raw',
-                    'value' => $model->slug,
-                ],
-                [
-                    'attribute' => 'gambar',
-                    'format' => 'raw',
-                    'value' => $model->getGambar(['class' => 'img-responsive img-thumbnail','style' => 'width: 350px']),
-                ],
+            [
+                'attribute' => 'created_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->created_at),
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->updated_at),
+            ],
+            [
+                'attribute' => 'created_by',
+                'format' => 'raw',
+                'value' => $model->created_by,
+            ],
+            [
+                'attribute' => 'updated_by',
+                'format' => 'raw',
+                'value' => $model->updated_by,
+            ],
+            [
+                'attribute' => 'slug',
+                'format' => 'raw',
+                'value' => $model->slug,
+            ],
+            [
+                'attribute' => 'gambar',
+                'format' => 'raw',
+                'value' => $model->getGambar(['class' => 'img-responsive img-thumbnail','style' => 'width: 350px']),
+            ],
         ],
     ]) ?>
 

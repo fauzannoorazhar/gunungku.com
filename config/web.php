@@ -3,6 +3,7 @@
 $params = require(__DIR__ . '/params.php');
 
 Yii::setAlias('@main-frontend','/frontend/layouts/main.php');
+Yii::setAlias('@main-detail-frontend','/frontend/layouts/main-detail.php');
 
 $config = [
     'id' => 'BASIC',

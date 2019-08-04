@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\GunungSearch;
 use Yii;
 use app\models\ContactForm;
 use app\models\LoginForm;
@@ -33,7 +34,7 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [               
                     [
-                        'actions' => ['logout','index','pasien-list','pasien-rm-list','dokter-list','dev'],
+                        'actions' => ['logout','index','dev'],
                         'allow' => true,
                         'roles' => ['@','?'],
                     ],
@@ -75,6 +76,19 @@ class SiteController extends Controller
         $this->layout = Yii::getAlias('@main-frontend');
 
         return $this->render('index');
+    }
+
+    public function actionPendaftaranOnline()
+    {
+        $this->layout = Yii::getAlias('@main-detail-frontend');
+
+        $searchModel = new GunungSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('pendaftaran-online', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
@@ -146,66 +160,6 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
-    }
-
-    public function actionPasienRmList($q = null, $id = null)
-    {
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-        $out = ['results' => ['id' => '', 'text' => '']];
-        if (!is_null($q)) {
-            $query = new Query;
-            $query->select(['concat(no_rm_pas, " - ",nm_pas) as text', 'id_pas as id'])
-                ->from('tb_pasien')
-                ->andFilterWhere(['like', 'no_rm_pas', $q])
-                ->limit(35);
-            $command = $query->createCommand();
-            $data = $command->queryAll();
-            $out['results'] = array_values($data);
-        } elseif ($id > 0) {
-            $out['results'] = ['id' => $id, 'text' => TbPasien::find($id)->nm_pas];
-        }
-
-        return $out;
-    }
-
-    public function actionPasienList($q = null, $id = null)
-    {
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-        $out = ['results' => ['id' => '', 'text' => '']];
-        if (!is_null($q)) {
-            $query = new Query;
-            $query->select('id_pas AS id, nm_pas AS text')
-                ->from('tb_pasien')
-                ->where(['like', 'nm_pas', $q])
-                ->limit(20);
-            $command = $query->createCommand();
-            $data = $command->queryAll();
-            $out['results'] = array_values($data);
-        } elseif ($id > 0) {
-            $out['results'] = ['id' => $id, 'text' => TbPasien::find($id)->nm_pas];
-        }
-
-        return $out;
-    }
-
-    public function actionDokterList($q = null, $id = null)
-    {
-        \Yii::$app->response->format = Response::FORMAT_JSON;
-        $out = ['results' => ['id' => '', 'text' => '']];
-        if (!is_null($q)) {
-            $query = new Query;
-            $query->select('id_dok AS id, nm_dok AS text')
-                ->from('tb_dokter')
-                ->where(['like', 'nm_dok', $q])
-                ->limit(20);
-            $command = $query->createCommand();
-            $data = $command->queryAll();
-            $out['results'] = array_values($data);
-        } elseif ($id > 0) {
-            $out['results'] = ['id' => $id, 'text' => TbDokter::find($id)->nm_dok];
-        }
-
-        return $out;
     }
 
     public function actionDev()

@@ -45,6 +45,8 @@ use yii\helpers\Html;
             'preset' => 'basic'
         ]) ?>
 
+        <?= $form->field($model, 'lokasi')->textArea(['rows' => 3]) ?>
+
         <?= $form->field($model, 'id_jenis_gunung')->widget(\kartik\select2\Select2::className(),[
             'data' => \app\models\JenisGunung::getList(),
             'options' => [
@@ -92,6 +94,10 @@ use yii\helpers\Html;
             ],
             'addon' => ['append' => ['content'=>'Orang']],
         ])->textInput(['type' => 'number','min' => 1,'placeholder' => 'Contoh : 100, 250']) ?>
+
+        <?= $form->field($model, 'link_website')->textInput(['maxlength' => true]) ?>
+
+        <?= $form->field($model, 'link_map')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'deskripsi_izin',[
             'horizontalCssClasses' => [
