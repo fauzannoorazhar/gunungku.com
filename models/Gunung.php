@@ -7,7 +7,9 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\helpers\Html;
 use yii\helpers\StringHelper;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "gunung".
@@ -53,11 +55,6 @@ class Gunung extends \yii\db\ActiveRecord
     const DITUTUP = 20;
 
     /**
-     * @var UploadedFile
-     */
-    public $imageFile;
-
-    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -77,9 +74,10 @@ class Gunung extends \yii\db\ActiveRecord
             [['ketinggian', 'id_jenis_gunung', 'status_aktif', 'status', 'kuota'], 'integer'],
             [['nama','link_website','link_map','gambar'], 'string', 'max' => 255],
 
-            [['created_at','updated_at','created_by','updated_by'],'integer'],
+            [['created_at','updated_at','created_by','updated_by'], 'integer'],
             ['status_hapus','default','value' => 0],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            ['gambar','safe'],
+            [['gambar'], 'file', 'extensions' => 'jpg, png', 'skipOnEmpty' => true],
         ];
     }
 
@@ -180,13 +178,53 @@ class Gunung extends \yii\db\ActiveRecord
         return StringHelper::truncate($this->deskripsi, $lenght);
     }
 
-    public function upload()
+    /**
+     * @var $uploadedFile UploadedFile
+     */
+    public function upload($gambar_lama=null)
     {
-        if ($this->validate()) {
-            $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+        $uploadedFile = UploadedFile::getInstance($this, 'gambar');
+
+        if (is_object($uploadedFile)) {
+            $this->gambar = $uploadedFile->basename;
+            $this->gambar .= '.' . $uploadedFile->extension;
+
+            $path = Yii::getAlias('@app').'/web/uploads/'.$this->gambar;
+            $uploadedFile->saveAs($path, false);
+
+            if ($this->isFileExist($gambar_lama)) {
+                $this->hapusFoto($gambar_lama);
+            }
+        } else {
+            $this->gambar = $gambar_lama;
+        }
+    }
+
+    public function isFileExist($filename)
+    {
+        $file = Yii::getAlias('@app').'/web/uploads/'.$filename;
+
+        if ($this->gambar !== null AND is_file($file)) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function hapusFoto($filename)
+    {
+        if ($this->isFileExist($filename)) {
+            $file = Yii::getAlias('@app').'/web/uploads/'.$filename;
+            unlink($file);
+        }
+    }
+
+    public function getGambar($htmlOptions=[])
+    {
+        if ($this->isFileExist($this->gambar)) {
+            return Html::img('@web/uploads/'. $this->gambar,$htmlOptions);
+        } else  {
+            return Html::img("@web/images/noimage.jpg", $htmlOptions);
         }
     }
 }

@@ -17,6 +17,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
+use yii\web\UploadedFile;
 
 /**
  * GunungController implements the CRUD actions for Gunung model.
@@ -89,6 +90,7 @@ class GunungController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $referrer = $_POST['referrer'];
 
+            $model->upload();
             if ($model->save()) {
                 Yii::$app->session->setFlash('success','Data berhasil disimpan.');
                 return $this->redirect($referrer);
@@ -114,10 +116,12 @@ class GunungController extends Controller
     {
         $model = $this->findModel($id);
         $referrer = Yii::$app->request->referrer;
+        $gambar_lama = $model->gambar;
 
         if ($model->load(Yii::$app->request->post())) {
             $referrer = $_POST['referrer'];
 
+            $model->upload($gambar_lama);
             if ($model->save()) {
                 Yii::$app->session->setFlash('success','Data berhasil disimpan.');
                 return $this->redirect($referrer);

@@ -107,6 +107,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => $model->slug,
                 ],
+                [
+                    'attribute' => 'gambar',
+                    'format' => 'raw',
+                    'value' => $model->getGambar(['class' => 'img-responsive img-thumbnail','style' => 'width: 350px']),
+                ],
         ],
     ]) ?>
 

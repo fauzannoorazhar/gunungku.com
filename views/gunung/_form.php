@@ -8,6 +8,7 @@ use yii\helpers\Html;
 ?>
 
 <?php $form = \kartik\form\ActiveForm::begin([
+    'options' => ['enctype' => 'multipart/form-data'],
     'type'=>'horizontal',
     'enableAjaxValidation'=>false,
     'enableClientValidation'=>false,
@@ -152,7 +153,17 @@ use yii\helpers\Html;
             'preset' => 'advanced'
         ]) ?>
 
-        <?= $form->field($model, 'imageFile')->fileInput() ?>
+        <?= $form->field($model, 'gambar')->widget(\kartik\file\FileInput::classname(), [
+            'options' => ['accept' => 'image/*'],
+            'pluginOptions' => [
+                /*'showCaption' => false,*/
+                'showRemove' => false,
+                'showUpload' => false,
+                'browseClass' => 'btn btn-primary btn-block',
+                'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
+                'browseLabel' =>  'Pilih Gambar'
+            ]
+        ])->label('Upload Gambar'); ?>
 
         <?= Html::hiddenInput('referrer',$referrer); ?>
 
