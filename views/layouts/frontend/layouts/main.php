@@ -6,6 +6,11 @@ use yii\helpers\Html;
 
 dmstr\web\AdminLteAsset::register($this);
 app\assets\FrontendAsset::register($this);
+$tooltip = <<< SCRIPT
+        $('body').tooltip({
+            selector: '[data-toggle="tooltip"]'
+        });       
+SCRIPT;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

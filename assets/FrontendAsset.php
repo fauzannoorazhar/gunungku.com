@@ -22,10 +22,11 @@ class FrontendAsset extends AssetBundle
         'css/animate.css',
         'css/owl.carousel.css',
         'css/style.css',
+        'css/site.css'
     ];
     public $js = [
-        'js/jquery-3.2.1.min.js',
-        'js/bootstrap.min.js',
+        /*'js/jquery-3.2.1.min.js',
+        'js/bootstrap.min.js',*/
         'js/owl.carousel.min.js',
         'js/masonry.pkgd.min.js',
         'js/magnific-popup.min.js',

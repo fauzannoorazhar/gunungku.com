@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="room-price">Daftar Pendakian</a>
+            <?= \yii\helpers\Html::a('Daftar Pendakian',['site/detail-gunung','slug' => $model->slug],['class' => 'room-price','target' => '_blank']) ?>
         </div>
     </div>
 </div>

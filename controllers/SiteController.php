@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Gunung;
 use app\models\GunungSearch;
 use Yii;
 use app\models\ContactForm;
@@ -91,25 +92,29 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * Displays kontak page.
-     *
-     * @return Response|string
-     */
-    public function actionKontak()
+    public function actionDetailGunung($slug)
     {
-        $this->layout = '//frontend/main-frontend-view';
+        $this->layout = Yii::getAlias('@main-detail-frontend');
+        $gunung = $this->findGunungBySlug($slug);
 
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->sendEmail(Yii::$app->params['adminEmail']);
-            
-            Yii::$app->session->setFlash('contactFormSubmitted');
-            return $this->refresh();
-        }
-        return $this->render('kontak', [
-            'model' => $model,
+        $dataProvider = new ActiveDataProvider([
+            'query' => $gunung->getManyGunungJalur(),
         ]);
+
+        return $this->render('detail-gunung',[
+            'gunung' => $gunung,
+            'dataProvider' => $dataProvider
+        ]);
+
+    }
+
+    protected function findGunungBySlug($slug)
+    {
+        if (($model = Gunung::findOne(['slug' => $slug])) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
     /**
@@ -150,33 +155,5 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->redirect(['site/login']);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-
-    public function actionDev()
-    {
-        $datetime = new \DateTime();
-        $datetime->modify('+5 day');
-        $tanggalAwal = $datetime->format('Y-m-d');
-        $datetime->modify('+1 month');
-        $tanggalAkhir = $datetime->format('Y-m-d');
-
-        $array;
-
-        while (strtotime($tanggalAwal) <= strtotime($tanggalAkhir)) {
-            $array[] = $tanggalAwal;
-            $tanggalAwal = date ("Y-m-d", strtotime("+1 day", strtotime($tanggalAwal)));
-        }
-
-        return $array;
     }
 }

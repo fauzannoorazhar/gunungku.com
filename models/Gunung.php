@@ -188,7 +188,7 @@ class Gunung extends \yii\db\ActiveRecord
 
     public function getKetinggianMdpl()
     {
-        return $this->ketinggian.' mdpl';
+        return $this->ketinggian.' MDPL';
     }
 
     public function getStatusGunungAktif()

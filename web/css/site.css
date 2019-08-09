@@ -3,3 +3,26 @@ body {
     height: 100%;
 }
 
+.single-list-content {
+    padding: 20px 30px !important;
+    border: 1px solid #e1e1e1;
+    border-top: none;
+}
+
+.property-details-list {
+    margin-bottom: 0px !important;
+}
+
+.panel-body {
+    padding: 20px 40px 20px 40px !important;
+}
+
+.panel-heading {
+    background: #30caa0 !important;
+    color: #fff !important;
+    border: 1px solid #30caa0 !important;
+}
+
+a.collapse-acordion:hover, a.collapse-acordion:active, a.collapse-acordion:focus {
+    color: white;
+}
