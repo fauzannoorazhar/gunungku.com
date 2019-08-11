@@ -59,6 +59,8 @@ SCRIPT;
 </div>
 <!-- Filter form section end -->
 
+<?php echo \yii2mod\notify\BootstrapNotify::widget(); ?>
+
 <?= $content ?>
 
 <?php $this->endBody() ?>

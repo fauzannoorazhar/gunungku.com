@@ -22,8 +22,12 @@
                         <a href=""><i class="fa fa-linkedin"></i></a>-->
                     </div>
                     <div class="panel-user">
-                        <a href=""><i class="fa fa-user-circle-o"></i> Register</a>
-                        <a href="<?= \yii\helpers\Url::to(['site/login']) ?>"><i class="fa fa-sign-in"></i> Login</a>
+                        <a href="<?= \yii\helpers\Url::to(['site/registrasi']) ?>"><i class="fa fa-user-circle-o"></i> Registrasi</a>
+                        <?php if (Yii::$app->user->isGuest) { ?>
+                            <a href="<?= \yii\helpers\Url::to(['site/login']) ?>"><i class="fa fa-sign-in"></i> Login</a>
+                        <?php } else { ?>
+                            <a href="<?= \yii\helpers\Url::to(['site/login']) ?>"><i class="fa fa-dashboard"></i> Halaman Admin</a>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

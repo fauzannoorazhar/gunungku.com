@@ -34,11 +34,11 @@ class M190709160605Table_pendaki extends Migration
         $this->createTable('{{%pendaki}}',[
             'id' => $this->primaryKey(),
             'nama' => $this->string(255)->notNull(),
-            'nik' => $this->integer(20)->notNull(),
+            'nik' => $this->string(255)->notNull(),
             'jenis_kelamin' => $this->integer(1)->notNull(),
             'tanggal_lahir' => $this->date()->notNull(),
             'nomor_telpon' => $this->string(15)->notNull(),
-            'nomor_kerabat' => $this->string(15)->notNull(),
+            'nomor_kerabat' => $this->string(15),
             'email' => $this->string(255),
             'alamat' => $this->text(),
             'id_provinsi' => $this->integer(11),

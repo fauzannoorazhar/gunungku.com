@@ -36,6 +36,7 @@ $this->title = 'Pendaftaran Online';
                     'prevPageLabel' => 'previous',
                     'nextPageLabel' => 'next',
                 ],
+                'summary' => '',
                 'itemView' => function ($model, $key, $index, $widget) {
                     return $this->render('_list-gunung',['model' => $model]);
 

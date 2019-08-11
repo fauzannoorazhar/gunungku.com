@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Gunung;
 use app\models\GunungSearch;
+use app\models\Pendaki;
 use Yii;
 use app\models\ContactForm;
 use app\models\LoginForm;
@@ -17,6 +18,7 @@ use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
@@ -92,6 +94,31 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionRegistrasi()
+    {
+        $this->layout = "//backend/main-login";
+        $model = new Pendaki();
+
+        $referrer = Yii::$app->request->referrer;
+
+        if ($model->load(Yii::$app->request->post())) {
+            $referrer = $_POST['referrer'];
+
+            if ($model->save()) {
+                $model->createUser();
+                Yii::$app->session->setFlash('success','Data berhasil disimpan.');
+                return $this->redirect(['site/index']);
+            }
+
+            Yii::$app->session->setFlash('error','Data gagal disimpan. Silahkan periksa kembali isian Anda.');
+        }
+
+        return $this->render('registrasi', [
+            'model' => $model,
+            'referrer' => $referrer
+        ]);
+    }
+
     public function actionDetailGunung($slug)
     {
         $this->layout = Yii::getAlias('@main-detail-frontend');
@@ -105,7 +132,6 @@ class SiteController extends Controller
             'gunung' => $gunung,
             'dataProvider' => $dataProvider
         ]);
-
     }
 
     protected function findGunungBySlug($slug)
@@ -124,7 +150,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        $this->layout = '//backend/main-login';
+        $this->layout = "//backend/main-login";
 
         $model = new LoginForm();
 
@@ -154,6 +180,6 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->redirect(['site/login']);
+        return $this->redirect(['site/index']);
     }
 }

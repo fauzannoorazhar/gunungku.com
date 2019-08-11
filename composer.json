@@ -38,7 +38,8 @@
         "2amigos/yii2-ckeditor-widget": "*",
         "boundstate/yii2-mailgun": "^0.0.3",
         "kartik-v/yii2-widget-depdrop": "dev-master",
-        "kartik-v/yii2-widget-fileinput": "dev-master"
+        "kartik-v/yii2-widget-fileinput": "dev-master",
+        "yii2mod/yii2-bootstrap-notify": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

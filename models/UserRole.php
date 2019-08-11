@@ -13,6 +13,8 @@ use yii\helpers\ArrayHelper;
  */
 class UserRole extends \yii\db\ActiveRecord
 {
+    use ListableTrait;
+
     const ADMIN = 1;
     const PETUGAS = 2;
     const PENDAKI = 3;

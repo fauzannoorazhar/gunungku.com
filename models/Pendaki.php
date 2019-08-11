@@ -35,8 +35,12 @@ class Pendaki extends \yii\db\ActiveRecord
 {
     use ListableTrait;
 
+    public $password;
+
     const PRIA = 10;
     const WANITA = 20;
+
+    const SCENARIO_REGISTRASI = 'regis';
 
     /**
      * {@inheritdoc}
@@ -52,12 +56,13 @@ class Pendaki extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            //[['email'],'exist','targetClass' => User::class,'targetAttribute' => ['email' => 'username'],'message' => 'Email Telah Terdaftar!'],
             [['nik','nama','email','nomor_telpon'],'unique'],
-            [['nama', 'nik', 'jenis_kelamin', 'tanggal_lahir', 'nomor_telpon', 'nomor_kerabat','email'], 'required'],
-            [['nik', 'jenis_kelamin', 'id_provinsi', 'id_kabupaten'], 'integer'],
-            [['tanggal_lahir'], 'safe'],
+            [['nama', 'nik', 'jenis_kelamin', 'tanggal_lahir', 'nomor_telpon','email','password'], 'required'],
+            [['jenis_kelamin', 'id_provinsi', 'id_kabupaten'], 'integer'],
+            [['tanggal_lahir','nomor_kerabat'], 'safe'],
             [['alamat'], 'string'],
-            [['nama', 'email', 'file_pengenal'], 'string', 'max' => 255],
+            [['nik', 'nama', 'email', 'file_pengenal','password'], 'string', 'max' => 255],
             ['file_pengenal','default','value' => null],
             //['email','email'],
             ['slug','safe'],
@@ -92,7 +97,7 @@ class Pendaki extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'nama' => Yii::t('app', 'Nama'),
-            'nik' => Yii::t('app', 'Nik'),
+            'nik' => Yii::t('app', 'NIK'),
             'jenis_kelamin' => Yii::t('app', 'Jenis Kelamin'),
             'tanggal_lahir' => Yii::t('app', 'Tanggal Lahir'),
             'nomor_telpon' => Yii::t('app', 'Nomor Telpon'),
@@ -130,5 +135,22 @@ class Pendaki extends \yii\db\ActiveRecord
         $query->andWhere('status_hapus IS NULL OR status_hapus = 0');
 
         return $query;
+    }
+
+    public function createUser()
+    {
+        $user = User::find()->andWhere(['username' => $this->email])->one();
+
+        if ($user === null) {
+            $model = new User();
+            $model->username = $this->email;
+            $model->setPassword($this->password);
+            $model->email = $this->email;
+            $model->id_pendaki = $this->id;
+            $model->id_user_role = UserRole::PENDAKI;
+            $model->generateAuthKey();
+            $model->generatePasswordResetToken();
+            $model->save(false);
+        }
     }
 }

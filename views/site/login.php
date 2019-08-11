@@ -1,56 +1,76 @@
 <?php
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\LoginForm */
+/* @var $model \common\models\LoginForm */
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Sign In';
+
+$fieldOptions1 = [
+    'options' => ['class' => 'form-group has-feedback'],
+    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
+];
+
+$fieldOptions2 = [
+    'options' => ['class' => 'form-group has-feedback'],
+    'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
+];
 ?>
-<div  class="login-pages">
-            <div class="login-logo">
-              <img src="<?php echo Yii::$app->request->baseUrl; ?>/images/makarti.png">
-              <p>Kembang Desa</p>
-              <p class="txt-l"></p>
-
-            </div>
-
 <div class="login-box">
+    <div class="login-logo">
+        <?php /*
+            <img src="<?php echo Yii::$app->request->baseUrl; ?>/images/logo.png" style="width: 105px">
+        */ ?>
+        <br>
+        <a href="#">BASIC</a>
+    </div>
+    <!-- /.login-logo -->
     <div class="login-box-body">
-    <p class="login-box-msg">Silahkan login terlebih dahulu</p>
-        <?php $form = ActiveForm::begin([
-                'id' => 'login-form',
-                'options' => ['class' => 'form-signin'],
-        ]); ?>
-        
-        <?= $form->field($model, 'username')->textInput(['placeholder'=>'Email / Username'])->label(false); ?>        
+        <p class="login-box-msg">Masukkan Nama Pengguna Dan Kata Sandi</p>
 
-        <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Password'])->label(false); ?>
+        <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+
+        <?= $form
+            ->field($model, 'username', $fieldOptions1)
+            ->label(false)
+            ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+
+        <?= $form
+            ->field($model, 'password', $fieldOptions2)
+            ->label(false)
+            ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
 
         <div class="row">
             <div class="col-xs-8">
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-4 col-xs-offset-4">
-                <?= Html::submitButton('Login', 
-                    [
-                        'id' => 'btnLogin',
-                        'class' => 'btn btn-flat btn-primary btn-block btn-signin', 
-                        'name' => 'login-button'
-                    ]) ?>
-                    &nbsp;
-            </div>
             <div class="col-xs-4">
-                <?= Html::a('<i class="fa fa-home"></i> Beranda', 'http://sireva.l', ['class' => 'btn btn-success']); ?>
-                <?= Html::a('<i class="fa fa-sign-up"></i> Register', ['site/register'], ['class' => 'btn btn-success']); ?>
+                <?= Html::submitButton('Sign in', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
             </div>
         </div>
 
-    <?php ActiveForm::end(); ?>
-    </div><!-- /.login-box-body -->
-</div><!-- /.login-box -->
+
+        <?php ActiveForm::end(); ?>
+
+        <?php /*
+        <div class="social-auth-links text-center">
+            <p>- OR -</p>
+            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
+                using Facebook</a>
+            <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign
+                in using Google+</a>
+        </div>
+        <!-- /.social-auth-links -->
+        */ ?>
+
+        <br>
+        <?= Html::a('Home', ['site/index'], ['option' => 'value']); ?>
+
+        <?php /*
+        <a href="register.html" class="text-center">Register a new membership</a>
+        */ ?>
+
+    </div>
+</div>

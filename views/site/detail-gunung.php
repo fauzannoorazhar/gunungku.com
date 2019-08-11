@@ -43,7 +43,6 @@ $this->title = 'Pendaftaran '.$gunung->nama;
                             <a href="#" class="price-btn"><?= $gunung->ketinggianMdpl ?></a>
                         </div>
                     </div>
-                    <h3 class="sl-sp-title">Rincian Gunung</h3>
                     <div class="row property-details-list">
                         <div class="col-md-4 col-sm-6">
                             <p><i class="fa fa-map-signs"></i> <?= $gunung->countGunungJalur ?> Jalur Pendakian</p>
@@ -55,60 +54,60 @@ $this->title = 'Pendaftaran '.$gunung->nama;
                             <p><i class="fa fa-calendar-check-o"></i> <?= $gunung->getCountKuotaJalur(date('Y-m-d')) ?> Kuota Pendakian</p>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <?= \kartik\grid\GridView::widget([
-                                'dataProvider' => $dataProvider,
-                                'striped' => false,
-                                'hover' => true,
-                                'columns' => [
-                                    [
-                                        'class' => 'yii\grid\SerialColumn',
-                                        'header' => 'No',
-                                        'headerOptions' => ['style' => 'text-align:center'],
-                                        'contentOptions' => ['style' => 'text-align:center'],
-                                    ],
-                                    [
-                                        'class' => 'kartik\grid\ExpandRowColumn',
-                                        'value' => function ($model, $key, $index, $column) {
-                                            return \kartik\grid\GridView::ROW_COLLAPSED;
-                                        },
-                                        'detail' => function ($model, $key, $index, $column) {
-                                            return $this->render('_expand-gunung', ['gunungJalur' => $model]);
-                                        },
-                                        'headerOptions' => ['class' => 'kartik-sheet-style'],
-                                        'expandOneOnly' => true,
-                                    ],
-                                    [
-                                        'attribute' => 'nama',
-                                        'format' => 'raw',
-                                        'headerOptions' => ['style' => 'text-align:center;'],
-                                        'contentOptions' => ['style' => 'text-align:left;'],
-                                    ],
-                                    [
-                                        'attribute' => 'jarak_puncak',
-                                        'format' => 'raw',
-                                        'headerOptions' => ['style' => 'text-align:center;'],
-                                        'contentOptions' => ['style' => 'text-align:center;'],
-                                    ],
-                                    [
-                                        'attribute' => 'jam_perjalanan',
-                                        'format' => 'raw',
-                                        'headerOptions' => ['style' => 'text-align:center;'],
-                                        'contentOptions' => ['style' => 'text-align:center;'],
-                                    ],
-                                    [
-                                        'label' => "Jumlah <br> Pos",
-                                        'format' => 'raw',
-                                        'encodeLabel' => false,
-                                        'value' => function(\app\models\GunungJalur $data) {
-                                            return $data->countGunungJalurPos;
-                                        },
-                                        'headerOptions' => ['style' => 'text-align:center; width: 80px'],
-                                        'contentOptions' => ['style' => 'text-align:center;'],
-                                    ],
+                    <?= \kartik\grid\GridView::widget([
+                            'dataProvider' => $dataProvider,
+                            'striped' => false,
+                            'responsiveWrap' => false,
+                            'responsive' => true,
+                            'hover' => true,
+                            'columns' => [
+                                [
+                                    'class' => 'yii\grid\SerialColumn',
+                                    'header' => 'No',
+                                    'headerOptions' => ['style' => 'text-align:center; width: 45px'],
+                                    'contentOptions' => ['style' => 'text-align:center'],
                                 ],
-                        ]);?>
-                    </div>
+                                [
+                                    'class' => 'kartik\grid\ExpandRowColumn',
+                                    'value' => function ($model, $key, $index, $column) {
+                                        return \kartik\grid\GridView::ROW_COLLAPSED;
+                                    },
+                                    'detail' => function ($model, $key, $index, $column) {
+                                        return $this->render('_expand-gunung', ['gunungJalur' => $model]);
+                                    },
+                                    'headerOptions' => ['class' => 'kartik-sheet-style'],
+                                    'expandOneOnly' => true,
+                                ],
+                                [
+                                    'attribute' => 'nama',
+                                    'format' => 'raw',
+                                    'headerOptions' => ['style' => 'text-align:center;'],
+                                    'contentOptions' => ['style' => 'text-align:left;'],
+                                ],
+                                [
+                                    'attribute' => 'jarak_puncak',
+                                    'format' => 'raw',
+                                    'headerOptions' => ['style' => 'text-align:center;'],
+                                    'contentOptions' => ['style' => 'text-align:center;'],
+                                ],
+                                [
+                                    'attribute' => 'jam_perjalanan',
+                                    'format' => 'raw',
+                                    'headerOptions' => ['style' => 'text-align:center;'],
+                                    'contentOptions' => ['style' => 'text-align:center;'],
+                                ],
+                                [
+                                    'label' => "Jumlah <br> Pos",
+                                    'format' => 'raw',
+                                    'encodeLabel' => false,
+                                    'value' => function(\app\models\GunungJalur $data) {
+                                        return $data->countGunungJalurPos;
+                                    },
+                                    'headerOptions' => ['style' => 'text-align:center; width: 80px'],
+                                    'contentOptions' => ['style' => 'text-align:center;'],
+                                ],
+                            ],
+                    ]);?>
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">

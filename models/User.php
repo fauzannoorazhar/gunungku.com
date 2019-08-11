@@ -45,6 +45,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['id_user_role', 'username', 'auth_key', 'password', 'email', 'created_at', 'updated_at'], 'required'],
             [['username', 'password', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
+            ['status','default','value' => 10],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
@@ -68,6 +69,18 @@ class User extends ActiveRecord implements IdentityInterface
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => time(),
+            ],
         ];
     }
 
