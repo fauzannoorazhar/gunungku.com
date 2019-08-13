@@ -10,7 +10,7 @@ $this->title = "Detail User";
 $this->params['breadcrumbs'][] = ['label' => 'User', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-view box box-primary">
+<div class="user-view box box-danger">
 
     <div class="box-header">
         <h3 class="box-title">Detail User</h3>
@@ -37,6 +37,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => $model->email
             ],
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => $model->labelStatus
+            ],
+            [
+                'attribute' => 'created_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->created_at),
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->updated_at),
+            ],
         ],
     ]) ?>
 
@@ -44,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="box-footer">
         <?= Html::a('<i class="fa fa-pencil"></i> Sunting User', ['update', 'id' => $model->id], ['class' => 'btn btn-success btn-flat']) ?>
-        <?= Html::a('<i class="fa fa-list"></i> Daftar User', ['index'], ['class' => 'btn btn-warning btn-flat']) ?>
+        <?= Html::a('<i class="fa fa-list"></i> Daftar User', ['index','id_user_role' => $model->id_user_role], ['class' => 'btn btn-warning btn-flat']) ?>
     </div>
 
 </div>

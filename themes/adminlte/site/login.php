@@ -38,7 +38,7 @@ $form = ActiveForm::begin([
     <div class="login-box-body">
         <p class="login-box-msg">Masukkan Nama Pengguna Dan Kata Sandi</p>
 
-        <?= $form->field($model, 'username',$userFormOptions)->textInput(['autofocus' => true,'placeholder' => 'Username'])->label(false) ?>
+        <?= $form->field($model, 'username',$userFormOptions)->textInput(['autofocus' => true,'placeholder' => 'Username / Email'])->label(false) ?>
 
         <?= $form->field($model, 'password',$passwordFormOptions)->passwordInput(['placeholder' => 'Password'])->label(false) ?>
 

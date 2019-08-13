@@ -18,7 +18,7 @@ $this->title = 'Pendaftaran '.$gunung->nama;
 <div class="site-breadcrumb">
     <div class="container">
         <?= \yii\helpers\Html::a('<i class="fa fa-home"></i> Home',['site/index']) ?>
-        <span><i class="fa fa-angle-right"></i><?= \yii\helpers\Html::a('Pendaftaran Online',['site/pendaftaran-online']) ?>
+        <span><i class="fa fa-angle-right"></i><?= \yii\helpers\Html::a('Pendaftaran Online',['site/pendaftaran-online']) ?></span>
         <span><i class="fa fa-angle-right"></i><?= $gunung->nama ?></span>
     </div>
 </div>
@@ -40,17 +40,17 @@ $this->title = 'Pendaftaran '.$gunung->nama;
                             <p><i class="fa fa-map-marker"></i><?= $gunung->lokasi ?></p>
                         </div>
                         <div class="col-xl-4">
-                            <a href="#" class="price-btn"><?= $gunung->ketinggianMdpl ?></a>
+                            <span class="price-btn"><?= $gunung->ketinggianMdpl ?></span>
                         </div>
                     </div>
                     <div class="row property-details-list">
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-md-4 col-sm-6 col-xs-6">
                             <p><i class="fa fa-map-signs"></i> <?= $gunung->countGunungJalur ?> Jalur Pendakian</p>
                         </div>
-                        <div class="col-md-4 col-sm-6">
+                        <div class="col-md-4 col-sm-6 col-xs-6">
                             <p><i class="fa fa-free-code-camp"></i> <?= $gunung->countJalurPos ?> Pos Pendakian</p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-md-12 col-xs-12">
                             <p><i class="fa fa-calendar-check-o"></i> <?= $gunung->getCountKuotaJalur(date('Y-m-d')) ?> Kuota Pendakian</p>
                         </div>
                     </div>
@@ -179,6 +179,7 @@ $this->title = 'Pendaftaran '.$gunung->nama;
                             </div>
                         </div>
                     </div>
+                    <div>&nbsp;</div>
                     <h3 class="sl-sp-title bd-no">Lokasi</h3>
                     <div class="mapouter">
                         <div class="gmap_canvas">
@@ -186,6 +187,11 @@ $this->title = 'Pendaftaran '.$gunung->nama;
                             </iframe>
                             <a href="https://www.embedgooglemap.net/blog/20-off-discount-for-elegant-themes-divi-sale-coupon-code-2019/">divi discount code</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style>
                     </div>
+                    <div>&nbsp;</div>
+                    <div class="text-center">
+                        <?= \yii\helpers\Html::a('Daftar Pendakian '.$gunung->nama,['site/pendaftaran-gunung','slug' => $gunung->slug],['class' => 'price-btn','data-toggle' => 'tooltip','title' => 'Pendaftaran Gunung']) ?>
+                    </div>
+
                 </div>
             </div>
             <!-- sidebar -->

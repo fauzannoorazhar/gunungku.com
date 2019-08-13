@@ -68,12 +68,13 @@ class PendakiSearch extends Pendaki
         return $query;
     }
     
-    public function search($params)
+    public function search($params,$paging)
     {
         $query = $this->getQuerySearch($params);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => ['pageSize' => $paging],
         ]);
 
         if (!$this->validate()) {

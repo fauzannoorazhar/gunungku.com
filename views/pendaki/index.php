@@ -14,9 +14,37 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="pendaki-index box box-danger">
 
-    <div class="box-header">
-        <?= Html::a('<i class="fa fa-plus"></i> Tambah Pendaki', ['create'], ['class' => 'btn btn-success btn-flat']) ?>
-
+    <div class="box-header with-border">
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 class="box-title">
+                    <?= $this->title ?>
+                </h3>
+            </div>
+            <div class="col-sm-8 pull-right">
+                <div class="row">
+                    <div class="col-sm-9 col-xs-12" style="text-align:right; margin-top: 5px;">
+                        <?= Html::label('Jumlah Data Ditampilkan',null,['class'=>'control-label']) ?>
+                    </div>
+                    <div class="col-sm-3 col-xs-12" style="text-align:left">
+                        <?= Html::dropDownList('paging', $paging, [
+                            '5' => '5 Data',
+                            '10' => '10 Data',
+                            '20' => '20 Data',
+                            '50' => '50 Data',
+                            '100' => '100 Data',
+                            '0' => 'Semua',
+                        ],
+                            [
+                                'onchange'=>'window.location.replace("index.php?r=pendaki/index&paging="+$(this).val());',
+                                'class'=>'form-control',
+                                'id' =>'tes',
+                            ]
+                        ) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="box-body">
@@ -62,7 +90,20 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'email',
                 'format' => 'raw',
+                'value' => function (\app\models\Pendaki $data) {
+                    return @$data->user->email;
+                },
                 'headerOptions' => ['style' => 'text-align:center; width: 175px'],
+                'contentOptions' => ['style' => 'text-align:center;'],
+            ],
+            [
+                'label' => "",
+                'format' => 'raw',
+                'encodeLabel' => false,
+                'value' => function(\app\models\Pendaki $data) {
+                    return Html::a('<i class="fa fa-user"></i>',['user/view','id' => @$data->user->id],['data-toggle' => 'tooltip','title' => 'Lihat Akun Pendaki']);
+                },
+                'headerOptions' => ['style' => 'text-align:center; width: 35px'],
                 'contentOptions' => ['style' => 'text-align:center;'],
             ],
             [

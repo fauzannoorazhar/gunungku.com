@@ -53,7 +53,7 @@ use yii\helpers\Html;
             'addon' => ['prepend' => ['content'=>'+62']]
         ])->textInput() ?>
 
-        <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'email')->textInput(['maxlength' => true,'readonly' => true]) ?>
 
         <?= $form->field($model, 'alamat')->textarea(['rows' => 6]) ?>
 

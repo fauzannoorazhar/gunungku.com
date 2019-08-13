@@ -29,6 +29,7 @@ use yii\behaviors\TimestampBehavior;
  *
  *
  * @property integer $countPendakigunung
+ * @property User $user
  * @property PendakiGunung $manyPendakiGunung
  */
 class Pendaki extends \yii\db\ActiveRecord
@@ -56,6 +57,7 @@ class Pendaki extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['email'], 'unique','targetClass' => User::class, 'targetAttribute' => ['email']],
             //[['email'],'exist','targetClass' => User::class,'targetAttribute' => ['email' => 'username'],'message' => 'Email Telah Terdaftar!'],
             [['nik','nama','email','nomor_telpon'],'unique'],
             [['nama', 'nik', 'jenis_kelamin', 'tanggal_lahir', 'nomor_telpon','email','password'], 'required'],
@@ -118,6 +120,11 @@ class Pendaki extends \yii\db\ActiveRecord
     public function getCountPendakigunung()
     {
         return count($this->manyPendakiGunung);
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::class,['id_pendaki' => 'id']);
     }
 
     public function getNamaJenisKelamin()

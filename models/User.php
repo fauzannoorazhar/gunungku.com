@@ -22,9 +22,18 @@ use yii\web\IdentityInterface;
  * @property int $status
  * @property int $created_at
  * @property int $updated_at
+ *
+ *
+ *
+ * @property mixed $userRole
+ * @property string $labelStatus
+ * @property string $authKey
+ * @property string $stringStatus
  */
 class User extends ActiveRecord implements IdentityInterface
 {
+    const AKTIF = 10;
+    const TIDAK_AKTIF = 20;
 
     /**
      * {@inheritdoc}
@@ -45,7 +54,7 @@ class User extends ActiveRecord implements IdentityInterface
             [['id_user_role', 'username', 'auth_key', 'password', 'email', 'created_at', 'updated_at'], 'required'],
             [['username', 'password', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            ['status','default','value' => 10],
+            ['status','default','value' => 20],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
@@ -98,6 +107,24 @@ class User extends ActiveRecord implements IdentityInterface
     public function getId()
     {
         return $this->getPrimaryKey();
+    }
+
+    public function getStringStatus()
+    {
+        if ($this->status === static::AKTIF) {
+            return 'Aktif';
+        } else {
+            return 'Tidak Aktif';
+        }
+    }
+
+    public function getLabelStatus()
+    {
+        if ($this->status === static::AKTIF) {
+            return '<span class="label label-success">'.$this->stringStatus.'</span>';
+        } else {
+            return '<span class="label label-danger">'.$this->stringStatus.'</span>';
+        }
     }
 
     /**
@@ -196,6 +223,32 @@ class User extends ActiveRecord implements IdentityInterface
             }
         }
         return false;  
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isPendaki()
+    {
+        if (!Yii::$app->user->isGuest) {
+            if (Yii::$app->user->identity->id_user_role === UserRole::PENDAKI){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isPetugas()
+    {
+        if (!Yii::$app->user->isGuest) {
+            if (Yii::$app->user->identity->id_user_role === UserRole::PETUGAS){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static function findBySession()

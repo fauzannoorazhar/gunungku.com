@@ -52,14 +52,15 @@ class PendakiController extends Controller
      * Lists all Pendaki models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($paging=20)
     {
         $searchModel = new PendakiSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $paging);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'paging' => $paging
         ]);
     }
 
@@ -87,7 +88,7 @@ class PendakiController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    /*public function actionCreate()
     {
         $model = new Pendaki();
 
@@ -108,8 +109,7 @@ class PendakiController extends Controller
             'model' => $model,
             'referrer'=>$referrer
         ]);
-
-    }
+    }*/
 
     /**
      * Updates an existing Pendaki model.

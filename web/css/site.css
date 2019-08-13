@@ -6,7 +6,6 @@ body {
 .single-list-content {
     padding: 20px 30px !important;
     border: 1px solid #e1e1e1;
-    border-top: none;
 }
 
 .property-details-list {
@@ -14,7 +13,7 @@ body {
 }
 
 .panel-body {
-    padding: 20px 40px 20px 40px !important;
+    padding: 20px 15px 20px 15px !important;
 }
 
 .panel-heading {

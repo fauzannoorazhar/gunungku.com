@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Gunung;
 use app\models\GunungSearch;
 use app\models\Pendaki;
+use app\models\UserSearch;
 use Yii;
 use app\models\ContactForm;
 use app\models\LoginForm;
@@ -106,7 +107,7 @@ class SiteController extends Controller
 
             if ($model->save()) {
                 $model->createUser();
-                Yii::$app->session->setFlash('success','Data berhasil disimpan.');
+                Yii::$app->session->setFlash('success','Registrasi Berhasil Silahkan Cek Email Anda Untuk Mengaktifkan Akun Anda.');
                 return $this->redirect(['site/index']);
             }
 
@@ -131,6 +132,21 @@ class SiteController extends Controller
         return $this->render('detail-gunung',[
             'gunung' => $gunung,
             'dataProvider' => $dataProvider
+        ]);
+    }
+
+    public function actionPendaftaranGunung($slug)
+    {
+        $this->layout = Yii::getAlias('@main-detail-frontend');
+        $gunung = $this->findGunungBySlug($slug);
+
+        if (Yii::$app->user->isGuest) {
+            Yii::$app->session->setFlash('error','Silahkan Login Terlebih Dahulu.');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
+        return $this->render('pendaftaran-gunung',[
+            'gunung' => $gunung
         ]);
     }
 
@@ -160,10 +176,15 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
 
+            Yii::$app->session->setFlash('success','Login Berhasil.');
+
             if (User::isAdmin()) {
                 return $this->redirect(['admin/index']);
             }
 
+            if (User::isPendaki()) {
+                return $this->redirect(['site/pendaftaran-online']);
+            }
         }
 
         return $this->render('login', [

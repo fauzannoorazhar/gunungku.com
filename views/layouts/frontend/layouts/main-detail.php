@@ -27,6 +27,7 @@ app\assets\FrontendAsset::register($this);
 
 <?= $this->render('header-section') ?>
 
+<?php echo \yii2mod\notify\BootstrapNotify::widget(); ?>
 <?= $content ?>
 
 <?php $this->endBody() ?>

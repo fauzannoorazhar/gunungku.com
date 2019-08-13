@@ -25,6 +25,8 @@ use app\models\UserRole;
                 'url' => '#',
                 'items' => [
                     ['label' => 'Admin', 'icon' => 'circle-o', 'url' => ['user/','id_user_role' => UserRole::ADMIN],],
+                    ['label' => 'Petugas', 'icon' => 'circle-o', 'url' => ['user/','id_user_role' => UserRole::PETUGAS],],
+                    ['label' => 'Pendaki', 'icon' => 'circle-o', 'url' => ['user/','id_user_role' => UserRole::PENDAKI],],
                 ]
             ],
             ['label' => 'Logout','icon' => 'lock', 'url' => ['site/logout'], 'template' => '<a href="{url}" data-method="post">{icon} {label}</a>' , 'visible' => !Yii::$app->user->isGuest],

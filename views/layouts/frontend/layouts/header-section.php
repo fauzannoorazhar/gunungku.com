@@ -22,12 +22,17 @@
                         <a href=""><i class="fa fa-linkedin"></i></a>-->
                     </div>
                     <div class="panel-user">
-                        <a href="<?= \yii\helpers\Url::to(['site/registrasi']) ?>"><i class="fa fa-user-circle-o"></i> Registrasi</a>
-                        <?php if (Yii::$app->user->isGuest) { ?>
-                            <a href="<?= \yii\helpers\Url::to(['site/login']) ?>"><i class="fa fa-sign-in"></i> Login</a>
-                        <?php } else { ?>
-                            <a href="<?= \yii\helpers\Url::to(['site/login']) ?>"><i class="fa fa-dashboard"></i> Halaman Admin</a>
-                        <?php } ?>
+                        <?php if (Yii::$app->user->isGuest) {
+                            echo \yii\helpers\Html::a('<i class="fa fa-user-circle-o"></i> Registrasi',['site/registrasi']);
+                            echo \yii\helpers\Html::a('<i class="fa fa-sign-in"></i> Login',['site/login']);
+                        } else {
+                            if (\app\models\User::isAdmin() OR \app\models\User::isPetugas()) {
+                                echo \yii\helpers\Html::a('<i class="fa fa-sign-in"></i> Halaman Admin',['site/login']);
+                            } else {
+                                echo \yii\helpers\Html::a('<i class="fa fa-user-circle-o"></i> Profil','#');
+                                echo \yii\helpers\Html::a('<i class="fa fa-sign-out"></i> Logout',['site/logout'],['data-method' => 'POST']);
+                            }
+                        } ?>
                     </div>
                 </div>
             </div>

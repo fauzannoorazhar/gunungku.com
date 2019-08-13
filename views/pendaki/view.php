@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'email',
                 'format' => 'raw',
-                'value' => $model->email,
+                'value' => @$model->user->email,
             ],
             [
                 'attribute' => 'alamat',
@@ -76,6 +76,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'file_pengenal',
                 'format' => 'raw',
                 'value' => $model->file_pengenal,
+            ],
+            [
+                'attribute' => 'created_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->created_at),
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => 'raw',
+                'value' => Yii::$app->formatter->asRelativeTime($model->updated_at),
             ],
             [
                 'attribute' => 'slug',
