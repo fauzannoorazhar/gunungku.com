@@ -564,8 +564,8 @@ class Helper extends Component
     public static function getHariBulanList($bulan=null)
     {
         if ($bulan === null) {
-            $firstDate = date("Y-m-01");
-            $lastDate = date("Y-m-t", strtotime(date("Y-m-d")));
+            $firstDate = date("Y-m-d");
+            $lastDate = date("Y-m-t", strtotime('+1 month', strtotime($firstDate)));
         } else {
             $firstDate = date("Y-$bulan-01");
             $lastDate = date("Y-m-t", strtotime(date("Y-$bulan-d")));
