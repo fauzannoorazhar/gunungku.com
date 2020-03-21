@@ -273,6 +273,15 @@ class Gunung extends \yii\db\ActiveRecord
         }
     }
 
+    public function getLinkDirektoriGambar()
+    {
+        if ($this->isFileExist($this->gambar)) {
+            return '/web/uploads/'. $this->gambar;
+        } else  {
+            return '/web/images/noimage.jpg';
+        }
+    }
+
     public function getLabelStatus()
     {
         if ($this->status == self::DIBUKA) {

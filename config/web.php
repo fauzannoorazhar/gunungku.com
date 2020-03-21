@@ -100,6 +100,9 @@ $config = [
             // 'downloadAction' => 'gridview/export/download',
             // 'i18n' => []
         ],
+        'api' => [
+            'class' => 'app\modules\api\Module',
+        ],
     ],
     'params' => $params,
 ];
